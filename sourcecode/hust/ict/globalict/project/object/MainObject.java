@@ -9,17 +9,13 @@ public class MainObject {
 	private double mass;
 	private double acceleration;
 	private double velocity;
-	//forces
+	// forces
 	private Force forces[];
 	private Force sumOfForces;
-	
-	
-	
+
 	public MainObject(Shape shape) {
 		this.shape = shape;
 	}
-
-
 
 	public double getMass() {
 		return mass;
@@ -45,37 +41,25 @@ public class MainObject {
 		this.shape = shape;
 	}
 
-
-
 	public double getVelocity() {
 		return velocity;
 	}
-
-
 
 	public void setVelocity(double velocity) {
 		this.velocity = velocity;
 	}
 
-
-
 	public double getAcceleration() {
 		return acceleration;
 	}
-
-
 
 	public void setAcceleration(double acceleration) {
 		this.acceleration = acceleration;
 	}
 
-
-
 	public Force getSumOfForces() {
 		return sumOfForces;
 	}
-
-
 
 	public void calSumOfForces() {
 	}

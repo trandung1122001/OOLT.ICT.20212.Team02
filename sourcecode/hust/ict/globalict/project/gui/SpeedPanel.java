@@ -17,13 +17,13 @@ public class SpeedPanel {
 		speedPanel.setBounds(10, 10, 260, 120);
 		mainFrame.getContentPane().add(speedPanel);
 		speedPanel.setLayout(null);
-		
+
 		JLabel accelerationLb_1 = new JLabel("Angular Acceleration = 100 km/s2");
 		accelerationLb_1.setHorizontalAlignment(SwingConstants.CENTER);
 		accelerationLb_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		accelerationLb_1.setBounds(10, 60, 240, 50);
 		speedPanel.add(accelerationLb_1);
-		
+
 		JLabel speedLb_1 = new JLabel("Angular Speed = 100 km/s");
 		speedLb_1.setHorizontalAlignment(SwingConstants.CENTER);
 		speedLb_1.setFont(new Font("Tahoma", Font.PLAIN, 13));

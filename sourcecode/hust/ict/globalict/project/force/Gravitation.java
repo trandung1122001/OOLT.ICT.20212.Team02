@@ -4,7 +4,7 @@ import hust.ict.globalict.project.object.MainObject;
 import hust.ict.globalict.project.utils.Direction;
 import hust.ict.globalict.project.utils.Fname;
 
-public class Gravitation extends Force{
+public class Gravitation extends Force {
 
 	public Gravitation(MainObject obj) {
 		this.setFname(Fname.Gravitation);
