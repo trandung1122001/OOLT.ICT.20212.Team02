@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9cfd795c-3162-4749-bf8e-1d9a7496616b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/Class Diagram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/Design.asta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/DetailClassDiagram.asta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/DetailClassDiagram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/UseCase Diagram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/usecase_update.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/assets/objects/cube.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/assets/objects/cylinder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/force/AppliedForce.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/force/Force.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/force/Friction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/force/Gravitation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/force/NormalForce.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/gui/MainSimulationScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/gui/test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/object/Cube.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/object/Cylinder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/object/MainObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/surface/Surface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/utils/Direction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/hust/ict/globalict/project/utils/Shape.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2BKsM9XO4UqD5xJUPqrv4KSkDCE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/HP/Documents/GitHub/OOLT.ICT.20212.Team02/clone_project"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9cfd795c-3162-4749-bf8e-1d9a7496616b" name="Changes" comment="" />
+      <created>1656666065227</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1656666065227</updated>
+      <workItem from="1656666071789" duration="214000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

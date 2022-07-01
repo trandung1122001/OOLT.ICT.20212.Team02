@@ -1,6 +1,0 @@
-
-*.prefs
-sourcecode/.project
-*.bak
-sourcecode/.classpath
-design/DetailClassDiagram.asta.lock
