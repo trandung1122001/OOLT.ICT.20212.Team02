@@ -9,14 +9,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 
 import hust.ict.globalict.project.controller.SimulationController;
-import hust.ict.globalict.project.utils.Contants.SimState;
+import hust.ict.globalict.project.utils.Constants.SimState;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
 public class DetailCheckboxPanel extends JPanel {
 
-	public DetailCheckboxPanel(SimulationController simCtrl, ForceDisplay aFDisplay, ForceDisplay frictionDisplay,
-			ForceDisplay sofDisplay, JLabel massLb) {
+	public DetailCheckboxPanel(SimulationController simCtrl, JLabel massLb, SpeedDisplay speedDisplay) {
 		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		setLayout(null);
 		setBounds(1184, 11, 230, 250);
@@ -78,8 +77,6 @@ public class DetailCheckboxPanel extends JPanel {
 					simCtrl.getStates().add(SimState.SHOWING_FORCES_ARROW);
 				} else {
 					simCtrl.getStates().remove(SimState.SHOWING_FORCES_ARROW);
-					frictionDisplay.setVisible(false);
-					aFDisplay.setVisible(false);
 				}
 
 			}
@@ -90,7 +87,6 @@ public class DetailCheckboxPanel extends JPanel {
 					simCtrl.getStates().add(SimState.SHOWING_SUMOFFORCES_ARROW);
 				} else {
 					simCtrl.getStates().remove(SimState.SHOWING_SUMOFFORCES_ARROW);
-					sofDisplay.setVisible(false);
 				}
 			}
 		});
@@ -116,10 +112,13 @@ public class DetailCheckboxPanel extends JPanel {
 		});
 		speedCB.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == 1)
+				if (e.getStateChange() == 1) {
 					simCtrl.getStates().add(SimState.SHOWING_SPEED);
-				else
+				}
+				else {
 					simCtrl.getStates().remove(SimState.SHOWING_SPEED);
+				}
+					
 			}
 		});
 	}

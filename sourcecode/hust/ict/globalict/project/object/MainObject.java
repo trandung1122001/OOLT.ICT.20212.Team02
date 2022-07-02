@@ -1,6 +1,6 @@
 package hust.ict.globalict.project.object;
 
-import hust.ict.globalict.project.utils.Contants.Shape;
+import hust.ict.globalict.project.utils.Constants.Shape;
 
 public class MainObject {
 	private Shape shape;
@@ -10,6 +10,9 @@ public class MainObject {
 
 	public MainObject(Shape s) {
 		this.shape = s;
+		mass = 0;
+		sideLength = 0;
+		radius = 0;
 	}
 	
 	public MainObject() {

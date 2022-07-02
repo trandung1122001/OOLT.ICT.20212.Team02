@@ -1,7 +1,7 @@
 package hust.ict.globalict.project.force;
 
 import hust.ict.globalict.project.object.MainObject;
-import hust.ict.globalict.project.utils.Contants.*;
+import hust.ict.globalict.project.utils.Constants.*;
 
 public class Force {
 	private Fname fname;

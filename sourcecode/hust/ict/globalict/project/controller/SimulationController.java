@@ -9,7 +9,7 @@ import hust.ict.globalict.project.force.Friction;
 import hust.ict.globalict.project.force.Gravitation;
 import hust.ict.globalict.project.object.MainObject;
 import hust.ict.globalict.project.surface.Surface;
-import hust.ict.globalict.project.utils.Contants.*;
+import hust.ict.globalict.project.utils.Constants.*;
 
 public class SimulationController {
 
@@ -21,15 +21,19 @@ public class SimulationController {
 	private Friction friction;
 	private Force sumOfForce;
 
-	private Set<SimState> states = new HashSet<SimState>();
+	private Set<SimState> states;
 
 	// private double deltaTime = 0.5f;
-	private double position = 0;
-	private double acceleration = 0;
-	private double velocity = 0;
+	private double position;
+	private double acceleration;
+	private double velocity;
 
 	public SimulationController() {
+		states = new HashSet<SimState>();
 		mainObj = new MainObject();
+		position = 0;
+		acceleration = 0;
+		velocity = 0;
 		surface = new Surface();
 		gravitation = new Gravitation(this.mainObj);
 		appliedF = new AppliedForce(this.mainObj);
@@ -45,7 +49,7 @@ public class SimulationController {
 			if (mainObj.getMass() == 0)
 				a = 0;
 			else
-				a = Math.abs(appliedF.getStrength() - friction.getStrength()) / mainObj.getMass();
+				a = Math.abs(appliedF.getStrength() + friction.getStrength()) / mainObj.getMass();
 		} else if (mainObj.getShape() == Shape.CYLINDER) {
 			if (mainObj.getMass() == 0 || mainObj.getRadius() == 0)
 				a = 0;
@@ -87,6 +91,21 @@ public class SimulationController {
 		this.mainObj.setSideLength(m);
 	}
 
+	public void resetObj(Shape s) {
+		position = 0;
+		acceleration = 0;
+		velocity = 0;
+		mainObj = new MainObject(s);
+		calAcceleration();
+	}
+	
+	public void resetSim() {
+		position = 0;
+		acceleration = 0;
+		velocity = 0;
+		calAcceleration();
+	}
+	
 	public Surface getSurface() {
 		return surface;
 	}
@@ -116,6 +135,7 @@ public class SimulationController {
 		else if (f > 0)
 			appliedF.setDirection(Direction.RIGHT);
 		calFriction();
+		calSumOfForce();
 	}
 
 	public Friction getFriction() {
@@ -146,6 +166,7 @@ public class SimulationController {
 			friction.setStrength(rlt);
 			friction.setDirection(Direction.RIGHT);
 		}
+		calSumOfForce();
 	}
 
 	public Force getSumOfForce() {
@@ -154,12 +175,12 @@ public class SimulationController {
 
 	public void calSumOfForce() {
 		this.sumOfForce.setFname(Fname.SUMOFFORCES);
-		double str = (friction.getStrength() - appliedF.getStrength());
+		double str = (friction.getStrength() + appliedF.getStrength());
 		this.sumOfForce.setStrength(Math.abs(str));
 		if (str < 0)
-			this.sumOfForce.setDirection(appliedF.getDirection());
+			this.sumOfForce.setDirection(Direction.LEFT);
 		else
-			this.sumOfForce.setDirection(friction.getDirection());
+			this.sumOfForce.setDirection(Direction.RIGHT);
 	}
 
 	public double getAcceleration() {

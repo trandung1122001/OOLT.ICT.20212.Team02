@@ -3,7 +3,7 @@ package hust.ict.globalict.project.gui;
 import javax.swing.JPanel;
 
 import hust.ict.globalict.project.controller.SimulationController;
-import hust.ict.globalict.project.utils.Contants.Shape;
+import hust.ict.globalict.project.utils.Constants.Shape;
 
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
@@ -64,6 +64,7 @@ public class ObjectPanel extends JPanel {
 		Cube.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				paramPanel.setVisible(false);
+				simCtrl.resetSim();
 				objSelectedPanel.setIcon(square);
 				Point pos = new Point(e.getLocationOnScreen().x - 200, e.getLocationOnScreen().y - 200);
 				objSelectedPanel.setBounds(pos.x, pos.y, 200, 200);

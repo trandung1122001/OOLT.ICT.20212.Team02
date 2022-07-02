@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.border.SoftBevelBorder;
 
 import hust.ict.globalict.project.controller.SimulationController;
-import hust.ict.globalict.project.utils.Contants.SimState;
-import hust.ict.globalict.project.utils.Contants;
+import hust.ict.globalict.project.utils.Constants.SimState;
+import hust.ict.globalict.project.utils.Constants;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
@@ -33,7 +33,7 @@ public class AppliedForcePanel extends JPanel {
 		lblAppliedForce.setBounds(10, 11, 271, 32);
 		add(lblAppliedForce);
 		lblAppliedForce.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAppliedForce.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblAppliedForce.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JPanel forcePanel = new JPanel();
 		forcePanel.setBounds(10, 55, 271, 105);
@@ -42,6 +42,7 @@ public class AppliedForcePanel extends JPanel {
 		forcePanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		JLabel afUnitLB = new JLabel("newtons");
+		afUnitLB.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		afUnitLB.setBounds(147, 11, 60, 20);
 		forcePanel.add(afUnitLB);
 		

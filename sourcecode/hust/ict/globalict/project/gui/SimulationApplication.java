@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.border.SoftBevelBorder;
 
 import hust.ict.globalict.project.controller.SimulationController;
-import hust.ict.globalict.project.utils.Contants.Fname;
-import hust.ict.globalict.project.utils.Contants.SimState;
+import hust.ict.globalict.project.utils.Constants.Fname;
+import hust.ict.globalict.project.utils.Constants.SimState;
 
 import javax.swing.border.BevelBorder;
 import java.beans.PropertyChangeListener;
@@ -19,6 +19,9 @@ import java.awt.event.ContainerEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.BoxLayout;
 
 public class SimulationApplication {
 
@@ -52,38 +55,28 @@ public class SimulationApplication {
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(null);
 		simCtrl = new SimulationController();
-		
+
 		JLabel massLb = new JLabel();
 		massLb.setHorizontalAlignment(SwingConstants.CENTER);
 		massLb.setFont(new Font("Tahoma", Font.BOLD, 12));
 		massLb.setBounds(637, 416, 150, 28);
 		frame.getContentPane().add(massLb);
 		
-		JLabel afLb = new JLabel("AppliedForce = 10N");
-		afLb.setHorizontalAlignment(SwingConstants.CENTER);
-		afLb.setFont(new Font("Tahoma", Font.BOLD, 12));
-		afLb.setBounds(632, 370, 160, 28);
+		DetailLabel afLb = new DetailLabel(simCtrl, Fname.APPLIEDFORCE);
 		frame.getContentPane().add(afLb);
-		
-		JLabel fLb = new JLabel("Friction = 10N");
-		fLb.setHorizontalAlignment(SwingConstants.CENTER);
-		fLb.setFont(new Font("Tahoma", Font.BOLD, 12));
-		fLb.setBounds(614, 469, 195, 28);
+		DetailLabel fLb = new DetailLabel(simCtrl, Fname.FRICTION);
 		frame.getContentPane().add(fLb);
-		
-		JLabel sofLb = new JLabel("SumOfForces = 10N");
-		sofLb.setHorizontalAlignment(SwingConstants.CENTER);
-		sofLb.setFont(new Font("Tahoma", Font.BOLD, 12));
-		sofLb.setBounds(632, 272, 160, 28);
+		DetailLabel sofLb = new DetailLabel(simCtrl, Fname.SUMOFFORCES);
 		frame.getContentPane().add(sofLb);
-
 		ForceDisplay aFDisplay = new ForceDisplay(simCtrl, Fname.APPLIEDFORCE);
 		frame.getContentPane().add(aFDisplay);
 		ForceDisplay frictionDisplay = new ForceDisplay(simCtrl, Fname.FRICTION);
 		frame.getContentPane().add(frictionDisplay);
 		ForceDisplay sofDisplay = new ForceDisplay(simCtrl, Fname.SUMOFFORCES);
 		frame.getContentPane().add(sofDisplay);
-		DetailCheckboxPanel detailPanel = new DetailCheckboxPanel(simCtrl, aFDisplay, frictionDisplay, sofDisplay, massLb);
+		SpeedDisplay speedDisplay = new SpeedDisplay(simCtrl);
+		frame.getContentPane().add(speedDisplay);
+		DetailCheckboxPanel detailPanel = new DetailCheckboxPanel(simCtrl,  massLb, speedDisplay);
 		frame.getContentPane().add(detailPanel);
 
 		ObjectParamPanel objParamPanel = new ObjectParamPanel(simCtrl, massLb);
@@ -102,7 +95,23 @@ public class SimulationApplication {
 		SurfacePanel surfacePanel = new SurfacePanel();
 		frame.getContentPane().add(surfacePanel);
 		
+		JPanel panel = new JPanel();
+		panel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel.setBounds(671, 51, 316, 90);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
 		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(12, 21, 89, 47);
+		panel.add(btnNewButton);
 		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(113, 21, 89, 47);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_1_1 = new JButton("New button");
+		btnNewButton_1_1.setBounds(214, 21, 89, 47);
+		panel.add(btnNewButton_1_1);
+
 	}
 }

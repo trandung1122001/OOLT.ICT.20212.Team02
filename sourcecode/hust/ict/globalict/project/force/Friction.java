@@ -2,7 +2,7 @@ package hust.ict.globalict.project.force;
 
 import hust.ict.globalict.project.object.MainObject;
 import hust.ict.globalict.project.surface.Surface;
-import hust.ict.globalict.project.utils.Contants.*;
+import hust.ict.globalict.project.utils.Constants.*;
 
 public class Friction extends Force {
 	private Surface sf;

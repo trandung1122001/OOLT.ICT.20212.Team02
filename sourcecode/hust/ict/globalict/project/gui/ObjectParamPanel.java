@@ -9,8 +9,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import hust.ict.globalict.project.controller.SimulationController;
-import hust.ict.globalict.project.utils.Contants.Shape;
-import hust.ict.globalict.project.utils.Contants.SimState;
+import hust.ict.globalict.project.utils.Constants.Shape;
+import hust.ict.globalict.project.utils.Constants.SimState;
 
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -23,16 +23,17 @@ public class ObjectParamPanel extends JPanel {
 		setVisible(false);
 		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		setLayout(null);
-		setBounds(1204, 308, 210, 90);
+		setBounds(904, 308, 210, 90);
 		pText1 = new JTextField();
+		pText1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		pText1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				try {
 					Double value = Double.parseDouble(pText1.getText());
 					simCtrl.updateObjMass(value);
-					if(simCtrl.getStates().contains(SimState.SHOWING_MASS)) {
-						massLb.setText("["+value+" kg]");
+					if (simCtrl.getStates().contains(SimState.SHOWING_MASS)) {
+						massLb.setText("[" + value + " " + "kg]");
 					}
 				} catch (NumberFormatException ex) {
 					pText1.setText(simCtrl.getMainObj().getMass() + "");
@@ -51,6 +52,7 @@ public class ObjectParamPanel extends JPanel {
 		add(pTitle1);
 
 		pText2 = new JTextField();
+		pText2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		pText2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -62,12 +64,12 @@ public class ObjectParamPanel extends JPanel {
 						pText2.setText(simCtrl.getMainObj().getSideLength() + "");
 					}
 				else if (simCtrl.getMainObj().getShape() == Shape.CYLINDER)
-				try {
-					Double value = Double.parseDouble(pText1.getText());
-					simCtrl.updateObjRadius(value);
-				} catch (NumberFormatException ex) {
-					pText2.setText(simCtrl.getMainObj().getRadius() + "");
-				}
+					try {
+						Double value = Double.parseDouble(pText1.getText());
+						simCtrl.updateObjRadius(value);
+					} catch (NumberFormatException ex) {
+						pText2.setText(simCtrl.getMainObj().getRadius() + "");
+					}
 			}
 		});
 		pText2.setHorizontalAlignment(SwingConstants.CENTER);

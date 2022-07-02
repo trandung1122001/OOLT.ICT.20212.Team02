@@ -17,8 +17,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import hust.ict.globalict.project.controller.SimulationController;
-import hust.ict.globalict.project.utils.Contants;
-import hust.ict.globalict.project.utils.Contants.SimState;
+import hust.ict.globalict.project.utils.Constants;
+import hust.ict.globalict.project.utils.Constants.SimState;
 
 public class FrictionPanel extends JPanel {
 
@@ -30,20 +30,22 @@ public class FrictionPanel extends JPanel {
 		JLabel frictonLb = new JLabel("Friction");
 		JPanel kineticPanel = new JPanel();
 		JLabel kineticLb = new JLabel("Kinetic coefficient");
+		kineticLb.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		JTextField kcTextField = new JTextField();
 		JSlider kcSlder = new JSlider();
 		JPanel staticPanel = new JPanel();
 		JLabel staticLb = new JLabel("Static coefficient");
+		staticLb.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		JTextField scTextField = new JTextField();
 		JSlider scSlder = new JSlider();
 		
 		frictonLb.setBounds(10, 11, 271, 32);
 		add(frictonLb);
 		frictonLb.setHorizontalAlignment(SwingConstants.CENTER);
-		frictonLb.setFont(new Font("Tahoma", Font.BOLD, 13));
+		frictonLb.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		//static Panel
-		staticPanel.setBounds(10, 174, 271, 105);
+		staticPanel.setBounds(10, 54, 271, 105);
 		add(staticPanel);
 		staticPanel.setLayout(null);
 		staticPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -60,15 +62,6 @@ public class FrictionPanel extends JPanel {
 				try {
 					Double value = Double.parseDouble(scTextField.getText())/ 0.018;
 					simCtrl.updateKineticCoef(value);
-					
-//					if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
-//						Double f = simCtrl.getFriction().getStrength();
-//						if (f < 0)
-//							frictionDisplay.display(Contants.RED_LEFT_ARROW, new Point(590, 400));
-//						else if (f > 0)
-//							frictionDisplay.display(Contants.RED_RIGHT_ARROW, new Point(715, 400));
-//					}
-					
 					scSlder.setValue(value.intValue());
 					kcSlder.setMaximum(value.intValue());
 				} catch (NumberFormatException ex) {
@@ -82,15 +75,6 @@ public class FrictionPanel extends JPanel {
 			public void stateChanged(ChangeEvent e) {
 				kcSlder.setMaximum(scSlder.getValue());
 				simCtrl.updateStaticCoef(scSlder.getValue() * 0.018);
-
-//				if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
-//					Double f = simCtrl.getFriction().getStrength();
-//					if (f < 0)
-//						frictionDisplay.display(Contants.RED_LEFT_ARROW, new Point(590, 400));
-//					else if (f > 0)
-//						frictionDisplay.display(Contants.RED_RIGHT_ARROW, new Point(715, 400));
-//				}
-				
 				scTextField.setText(String.format("%.2f", simCtrl.getSurface().getStaticCoefficient()));
 			}
 		});
@@ -108,8 +92,8 @@ public class FrictionPanel extends JPanel {
 		scSlder.setBounds(36, 41, 200, 53);
 		staticPanel.add(scSlder);
 		
-		//static Panel
-		kineticPanel.setBounds(10, 55, 271, 105);
+		//kinetic Panel
+		kineticPanel.setBounds(10, 171, 271, 105);
 		add(kineticPanel);
 		kineticPanel.setLayout(null);
 		kineticPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -125,15 +109,6 @@ public class FrictionPanel extends JPanel {
 			public void focusLost(FocusEvent e) {
 				try {
 					Double value = Double.parseDouble(kcTextField.getText()) / 0.018;
-
-//					if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
-//						Double f = simCtrl.getFriction().getStrength();
-//						if (f < 0)
-//							frictionDisplay.display(Contants.RED_LEFT_ARROW, new Point(590, 400));
-//						else if (f > 0)
-//							frictionDisplay.display(Contants.RED_RIGHT_ARROW, new Point(715, 400));
-//					}
-					
 					simCtrl.updateKineticCoef(value);
 					kcSlder.setValue(value.intValue());
 					scSlder.setMinimum(value.intValue());
@@ -148,15 +123,6 @@ public class FrictionPanel extends JPanel {
 			public void stateChanged(ChangeEvent e) {
 				scSlder.setMinimum(kcSlder.getValue());
 				simCtrl.updateKineticCoef(kcSlder.getValue() * 0.018);
-				
-//				if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
-//					Double f = simCtrl.getFriction().getStrength();
-//					if (f < 0)
-//						frictionDisplay.display(Contants.RED_LEFT_ARROW, new Point(590, 400));
-//					else if (f > 0)
-//						frictionDisplay.display(Contants.RED_RIGHT_ARROW, new Point(715, 400));
-//				}
-				
 				kcTextField.setText(String.format("%.2f", simCtrl.getSurface().getKineticCoefficient()));
 			}
 		});
