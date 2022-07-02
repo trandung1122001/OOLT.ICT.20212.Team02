@@ -74,12 +74,12 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 		if (simCtrl.getStates().contains(SimState.SHOWING_SPEED)) {
 			setVisible(true);
 			simCtrl.calAcceleration();
-			simCtrl.reCalVelocityAfter(Constants.DELTA_TIME_MILISECS );
+			simCtrl.reCalVelocityAfter(Constants.DELTA_TIME_MILISECS / 1000);
 			tf1.setText(String.format("%.2f", Math.abs(simCtrl.getAcceleration())));
 			tf2.setText(String.format("%.2f", Math.abs(simCtrl.getVelocity())));
 			if (simCtrl.getMainObj().getShape() == Shape.CUBE) {
 				lb1.setText("Acceleration [m/s2]");
-				lb2.setText("Velocity [m/s2]");
+				lb2.setText("Velocity [m/s]");
 			} else if (simCtrl.getMainObj().getShape() == Shape.CYLINDER) {
 				lb1.setText("Angular Acceleration [m/s2]");
 				lb2.setText("Angular Velocity [m/s]");

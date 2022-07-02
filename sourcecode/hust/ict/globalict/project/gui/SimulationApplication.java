@@ -22,6 +22,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 public class SimulationApplication {
 
@@ -48,6 +50,7 @@ public class SimulationApplication {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(UIManager.getColor("Button.shadow"));
 		frame.setResizable(false);
 		frame.setTitle("Interactive simulation of the composition of forces");
 		frame.setBounds(100, 100, 1440, 900);

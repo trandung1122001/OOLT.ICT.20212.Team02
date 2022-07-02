@@ -44,6 +44,7 @@ public class SimulationController {
 	}
 
 	public void calAcceleration() {
+		calFriction();
 		double a = 0;
 		if (mainObj.getShape() == Shape.CUBE) {
 			if (mainObj.getMass() == 0)
@@ -73,18 +74,15 @@ public class SimulationController {
 
 	public void updateObjShape(Shape s) {
 		this.mainObj.setShape(s);
-		calFriction();
 	}
 
 	public void updateObjMass(double m) {
 		this.mainObj.setMass(m);
 		this.gravitation.setStrength(m * 10);
-		calFriction();
 	}
 
 	public void updateObjRadius(double m) {
 		this.mainObj.setRadius(m);
-		calAcceleration();
 	}
 
 	public void updateObjSideLength(double m) {
@@ -93,17 +91,14 @@ public class SimulationController {
 
 	public void resetObj(Shape s) {
 		position = 0;
-		acceleration = 0;
 		velocity = 0;
 		mainObj = new MainObject(s);
-		calAcceleration();
 	}
 	
 	public void resetSim() {
 		position = 0;
 		acceleration = 0;
 		velocity = 0;
-		calAcceleration();
 	}
 	
 	public Surface getSurface() {
@@ -112,12 +107,10 @@ public class SimulationController {
 
 	public void updateStaticCoef(double sc) {
 		surface.setStaticCoefficient(sc);
-		calFriction();
 	}
 
 	public void updateKineticCoef(double kc) {
 		surface.setKineticCoefficient(kc);
-		calFriction();
 	}
 
 	public double getPosition() {
@@ -134,11 +127,11 @@ public class SimulationController {
 			appliedF.setDirection(Direction.LEFT);
 		else if (f > 0)
 			appliedF.setDirection(Direction.RIGHT);
-		calFriction();
 		calSumOfForce();
 	}
 
 	public Friction getFriction() {
+		calFriction();
 		return friction;
 	}
 
@@ -184,6 +177,7 @@ public class SimulationController {
 	}
 
 	public double getAcceleration() {
+		calAcceleration();
 		return acceleration;
 	}
 
