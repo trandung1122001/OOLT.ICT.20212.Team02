@@ -2,19 +2,18 @@ package hust.ict.globalict.project.force;
 
 import hust.ict.globalict.project.object.MainObject;
 import hust.ict.globalict.project.surface.Surface;
-import hust.ict.globalict.project.utils.Direction;
-import hust.ict.globalict.project.utils.Fname;
+import hust.ict.globalict.project.utils.Contants.*;
 
 public class Friction extends Force {
 	private Surface sf;
-	private Force appliedForce;
-	private Force normalForce;
+	private Gravitation gravitation;
+	private AppliedForce appliedF;
 
-	public Friction(Surface sf, MainObject obj, Force normalF, Force appliedF) {
-		this.setFname(Fname.Friction);
+	public Friction(Surface sf, MainObject obj, Gravitation gravitation, AppliedForce appliedF) {
+		this.setFname(Fname.FRICTION);
 		this.setSf(sf);
 		this.setObj(obj);
-		this.setNormalForce(normalF);
+		this.setGravitation(gravitation);
 		this.setAppliedForce(appliedF);
 		if (appliedF.getDirection() == Direction.LEFT)
 			this.setDirection(Direction.RIGHT);
@@ -34,12 +33,12 @@ public class Friction extends Force {
 		this.sf = sf;
 	}
 
-	public void setNormalForce(Force normalForce) {
-		this.normalForce = normalForce;
+	public void setGravitation(Gravitation gravitation) {
+		this.gravitation = gravitation;
 	}
 
-	public void setAppliedForce(Force appliedForce) {
-		this.appliedForce = appliedForce;
+	public void setAppliedForce(AppliedForce appliedForce) {
+		this.appliedF = appliedForce;
 	}
 
 }

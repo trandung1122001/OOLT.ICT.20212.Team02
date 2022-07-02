@@ -1,70 +1,89 @@
 package hust.ict.globalict.project.gui;
 
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-public class AppliedForcePanel {
+import hust.ict.globalict.project.controller.SimulationController;
+import hust.ict.globalict.project.utils.Contants.SimState;
+import hust.ict.globalict.project.utils.Contants;
 
-	private JTextField textField_2;
+import javax.swing.border.BevelBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
-	public AppliedForcePanel(JFrame mainFrame) {
-		JPanel appliedForcePanel = new JPanel();
-		appliedForcePanel.setLayout(null);
-		appliedForcePanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		appliedForcePanel.setBounds(822, 672, 291, 178);
-		mainFrame.getContentPane().add(appliedForcePanel);
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import java.awt.Cursor;
 
+public class AppliedForcePanel extends JPanel {
+	
+
+	public AppliedForcePanel(SimulationController simCtrl, ForceDisplay aFDisplay) {
+		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		setBounds(824, 670, 290, 180);
+		setLayout(null);
+		
 		JLabel lblAppliedForce = new JLabel("Applied Force");
+		lblAppliedForce.setBounds(10, 11, 271, 32);
+		add(lblAppliedForce);
 		lblAppliedForce.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAppliedForce.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblAppliedForce.setBounds(10, 11, 271, 32);
-		appliedForcePanel.add(lblAppliedForce);
-
+		
 		JPanel forcePanel = new JPanel();
+		forcePanel.setBounds(10, 55, 271, 105);
+		add(forcePanel);
 		forcePanel.setLayout(null);
 		forcePanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		forcePanel.setBounds(10, 55, 271, 105);
-		appliedForcePanel.add(forcePanel);
+		
+		JLabel afUnitLB = new JLabel("newtons");
+		afUnitLB.setBounds(147, 11, 60, 20);
+		forcePanel.add(afUnitLB);
+		
+		JTextField afTextField = new JTextField();
 
-		JButton decBtn_2 = new JButton("-");
-		decBtn_2.setBounds(75, 11, 37, 23);
-		forcePanel.add(decBtn_2);
+		JSlider afSlder = new JSlider();
+		afSlder.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		afTextField.addFocusListener(new FocusAdapter() {
+			public void focusLost(FocusEvent e) {
+				try {
+					Double value = Double.parseDouble(afTextField.getText());
+					simCtrl.updateAppliedFStrength(value);
+					afSlder.setValue(value.intValue());
+				} catch (NumberFormatException ex) {
+					afTextField.setText(simCtrl.getAppliedF().getStrength() + "");
+				}
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(4);
-		textField_2.setBounds(117, 12, 38, 20);
-		forcePanel.add(textField_2);
+			}
+		});
+		
+		afSlder.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				simCtrl.updateAppliedFStrength(afSlder.getValue());
+				afTextField.setText(simCtrl.getAppliedF().getStrength() + "");
+			}
+		});
 
-		JButton incBtn_2 = new JButton("+");
-		incBtn_2.setBounds(160, 11, 41, 23);
-		forcePanel.add(incBtn_2);
-
-		JSlider slider_2 = new JSlider();
-		slider_2.setSnapToTicks(true);
-		slider_2.setPaintTicks(true);
-		slider_2.setPaintLabels(true);
-		slider_2.setName("");
-		slider_2.setMinorTickSpacing(10);
-		slider_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		slider_2.setBounds(36, 41, 200, 31);
-		forcePanel.add(slider_2);
-
-		JLabel lblNewLabel_2_2 = new JLabel("-100N                         0N                      100N");
-		lblNewLabel_2_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_2.setFocusable(false);
-		lblNewLabel_2_2.setBounds(11, 74, 251, 20);
-		forcePanel.add(lblNewLabel_2_2);
+		afTextField.setText("0");
+		afTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		afTextField.setBounds(86, 11, 53, 20);
+		forcePanel.add(afTextField);
+		afSlder.setValue(0);
+		afSlder.setRequestFocusEnabled(false);
+		afSlder.setPaintTicks(true);
+		afSlder.setPaintLabels(true);
+		afSlder.setMinorTickSpacing(10);
+		afSlder.setMinimum(-100);
+		afSlder.setMajorTickSpacing(100);
+		afSlder.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		afSlder.setBounds(36, 41, 200, 53);
+		forcePanel.add(afSlder);
 
 	}
 

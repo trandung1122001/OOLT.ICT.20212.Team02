@@ -2,11 +2,10 @@ package hust.ict.globalict.project.gui;
 
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Point;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -14,110 +13,166 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class FrictionPanel {
+import hust.ict.globalict.project.controller.SimulationController;
+import hust.ict.globalict.project.utils.Contants;
+import hust.ict.globalict.project.utils.Contants.SimState;
 
-	private JTextField textField;
-	private JTextField textField_1;
+public class FrictionPanel extends JPanel {
 
-	public FrictionPanel(JFrame mainFrame) {
-		JPanel frictionPanel = new JPanel();
-		frictionPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		frictionPanel.setBounds(1123, 560, 291, 290);
-		mainFrame.getContentPane().add(frictionPanel);
-		frictionPanel.setLayout(null);
-
-		JLabel Firction = new JLabel("Friction");
-		Firction.setLabelFor(frictionPanel);
-		Firction.setHorizontalAlignment(SwingConstants.CENTER);
-		Firction.setBounds(10, 11, 271, 32);
-		Firction.setFont(new Font("Tahoma", Font.BOLD, 13));
-		frictionPanel.add(Firction);
-
+	public FrictionPanel(SimulationController simCtrl, ForceDisplay frictionDisplay) {
+		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		setBounds(1124, 549, 290, 300);
+		setLayout(null);
+		
+		JLabel frictonLb = new JLabel("Friction");
+		JPanel kineticPanel = new JPanel();
+		JLabel kineticLb = new JLabel("Kinetic coefficient");
+		JTextField kcTextField = new JTextField();
+		JSlider kcSlder = new JSlider();
 		JPanel staticPanel = new JPanel();
-		staticPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		staticPanel.setBounds(10, 55, 271, 105);
-		frictionPanel.add(staticPanel);
+		JLabel staticLb = new JLabel("Static coefficient");
+		JTextField scTextField = new JTextField();
+		JSlider scSlder = new JSlider();
+		
+		frictonLb.setBounds(10, 11, 271, 32);
+		add(frictonLb);
+		frictonLb.setHorizontalAlignment(SwingConstants.CENTER);
+		frictonLb.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		//static Panel
+		staticPanel.setBounds(10, 174, 271, 105);
+		add(staticPanel);
 		staticPanel.setLayout(null);
+		staticPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 
-		JButton decBtn = new JButton("-");
-		decBtn.setBounds(135, 7, 37, 23);
-		staticPanel.add(decBtn);
+		
+		staticLb.setBounds(36, 11, 111, 20);
+		staticPanel.add(staticLb);
 
-		textField = new JTextField();
-		textField.setBounds(177, 8, 38, 20);
-		staticPanel.add(textField);
-		textField.setColumns(4);
+		
+		scSlder.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-		JButton incBtn = new JButton("+");
-		incBtn.setBounds(220, 7, 41, 23);
-		incBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		scTextField.addFocusListener(new FocusAdapter() {
+			public void focusLost(FocusEvent e) {
+				try {
+					Double value = Double.parseDouble(scTextField.getText())/ 0.018;
+					simCtrl.updateKineticCoef(value);
+					
+//					if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
+//						Double f = simCtrl.getFriction().getStrength();
+//						if (f < 0)
+//							frictionDisplay.display(Contants.RED_LEFT_ARROW, new Point(590, 400));
+//						else if (f > 0)
+//							frictionDisplay.display(Contants.RED_RIGHT_ARROW, new Point(715, 400));
+//					}
+					
+					scSlder.setValue(value.intValue());
+					kcSlder.setMaximum(value.intValue());
+				} catch (NumberFormatException ex) {
+					scTextField.setText(String.format("%.2f", simCtrl.getSurface().getStaticCoefficient()));
+				}
+
 			}
 		});
-		staticPanel.add(incBtn);
 
-		JSlider slider = new JSlider();
-		slider.setBounds(35, 41, 200, 31);
-		slider.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		slider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		slider.setName("");
-		slider.setMinorTickSpacing(10);
-		slider.setPaintLabels(true);
-		slider.setSnapToTicks(true);
-		slider.setPaintTicks(true);
-		staticPanel.add(slider);
+		scSlder.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				kcSlder.setMaximum(scSlder.getValue());
+				simCtrl.updateStaticCoef(scSlder.getValue() * 0.018);
 
-		JLabel lblNewLabel_2 = new JLabel("-100N                         0N                      100N");
-		lblNewLabel_2.setFocusable(false);
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(10, 74, 251, 20);
-		staticPanel.add(lblNewLabel_2);
+//				if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
+//					Double f = simCtrl.getFriction().getStrength();
+//					if (f < 0)
+//						frictionDisplay.display(Contants.RED_LEFT_ARROW, new Point(590, 400));
+//					else if (f > 0)
+//						frictionDisplay.display(Contants.RED_RIGHT_ARROW, new Point(715, 400));
+//				}
+				
+				scTextField.setText(String.format("%.2f", simCtrl.getSurface().getStaticCoefficient()));
+			}
+		});
 
-		JLabel staticTitle = new JLabel("Static Coefficient");
-		staticTitle.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		staticTitle.setBounds(10, 11, 115, 19);
-		staticPanel.add(staticTitle);
-
-		JPanel kineticPanel = new JPanel();
+		scTextField.setText("0");
+		scTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		scTextField.setBounds(157, 11, 50, 20);
+		staticPanel.add(scTextField);
+		scSlder.setValue(0);
+		scSlder.setRequestFocusEnabled(false);
+		scSlder.setPaintTicks(true);
+		scSlder.setMinorTickSpacing(10);
+		scSlder.setMajorTickSpacing(100);
+		scSlder.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		scSlder.setBounds(36, 41, 200, 53);
+		staticPanel.add(scSlder);
+		
+		//static Panel
+		kineticPanel.setBounds(10, 55, 271, 105);
+		add(kineticPanel);
 		kineticPanel.setLayout(null);
 		kineticPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		kineticPanel.setBounds(10, 171, 271, 105);
-		frictionPanel.add(kineticPanel);
 
-		JButton decBtn_1 = new JButton("-");
-		decBtn_1.setBounds(135, 7, 37, 23);
-		kineticPanel.add(decBtn_1);
+		
+		kineticLb.setBounds(36, 11, 111, 20);
+		kineticPanel.add(kineticLb);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(4);
-		textField_1.setBounds(177, 8, 38, 20);
-		kineticPanel.add(textField_1);
+		
+		kcSlder.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-		JButton incBtn_1 = new JButton("+");
-		incBtn_1.setBounds(220, 7, 41, 23);
-		kineticPanel.add(incBtn_1);
+		kcTextField.addFocusListener(new FocusAdapter() {
+			public void focusLost(FocusEvent e) {
+				try {
+					Double value = Double.parseDouble(kcTextField.getText()) / 0.018;
 
-		JSlider slider_1 = new JSlider();
-		slider_1.setSnapToTicks(true);
-		slider_1.setPaintTicks(true);
-		slider_1.setPaintLabels(true);
-		slider_1.setName("");
-		slider_1.setMinorTickSpacing(10);
-		slider_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		slider_1.setBounds(35, 41, 200, 31);
-		kineticPanel.add(slider_1);
+//					if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
+//						Double f = simCtrl.getFriction().getStrength();
+//						if (f < 0)
+//							frictionDisplay.display(Contants.RED_LEFT_ARROW, new Point(590, 400));
+//						else if (f > 0)
+//							frictionDisplay.display(Contants.RED_RIGHT_ARROW, new Point(715, 400));
+//					}
+					
+					simCtrl.updateKineticCoef(value);
+					kcSlder.setValue(value.intValue());
+					scSlder.setMinimum(value.intValue());
+					
+				} catch (NumberFormatException ex) {
+					kcTextField.setText(String.format("%.2f", simCtrl.getSurface().getKineticCoefficient()));
+				}
+			}
+		});
 
-		JLabel lblNewLabel_2_1 = new JLabel("-100N                         0N                      100N");
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setFocusable(false);
-		lblNewLabel_2_1.setBounds(10, 74, 251, 20);
-		kineticPanel.add(lblNewLabel_2_1);
+		kcSlder.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				scSlder.setMinimum(kcSlder.getValue());
+				simCtrl.updateKineticCoef(kcSlder.getValue() * 0.018);
+				
+//				if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
+//					Double f = simCtrl.getFriction().getStrength();
+//					if (f < 0)
+//						frictionDisplay.display(Contants.RED_LEFT_ARROW, new Point(590, 400));
+//					else if (f > 0)
+//						frictionDisplay.display(Contants.RED_RIGHT_ARROW, new Point(715, 400));
+//				}
+				
+				kcTextField.setText(String.format("%.2f", simCtrl.getSurface().getKineticCoefficient()));
+			}
+		});
 
-		JLabel kineticTitle = new JLabel("Kinetic Coefficient");
-		kineticTitle.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		kineticTitle.setBounds(10, 11, 115, 19);
-		kineticPanel.add(kineticTitle);
+		kcTextField.setText("0");
+		kcTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		kcTextField.setBounds(157, 11, 50, 20);
+		kineticPanel.add(kcTextField);
+		kcSlder.setValue(0);
+		kcSlder.setRequestFocusEnabled(false);
+		kcSlder.setPaintTicks(true);
+		kcSlder.setMinorTickSpacing(10);
+		kcSlder.setMajorTickSpacing(100);
+		kcSlder.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		kcSlder.setBounds(36, 41, 200, 53);
+		kineticPanel.add(kcSlder);
 	}
 
 }

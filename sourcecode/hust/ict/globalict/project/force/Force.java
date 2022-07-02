@@ -1,14 +1,23 @@
 package hust.ict.globalict.project.force;
 
-import hust.ict.globalict.project.utils.Direction;
-import hust.ict.globalict.project.utils.Fname;
 import hust.ict.globalict.project.object.MainObject;
+import hust.ict.globalict.project.utils.Contants.*;
 
 public class Force {
 	private Fname fname;
 	private double strength;
 	private Direction direction;
 	private MainObject obj;
+	
+	public Force() {
+		this.strength = 0;
+	}
+	
+	public Force(Fname fname, double strength, Direction direction) {
+		this.fname = fname;
+		this.strength = strength;
+		this.direction = direction;
+	}
 
 	public Fname getFname() {
 		return fname;
@@ -31,6 +40,10 @@ public class Force {
 	}
 
 	public void setStrength(double strength) {
+		if (fname != Fname.GRAVITATION) {
+			if (strength > 0) setDirection(Direction.RIGHT);
+			else if (strength < 0) setDirection(Direction.RIGHT);
+		}
 		this.strength = strength;
 	}
 

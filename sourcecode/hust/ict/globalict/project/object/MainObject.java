@@ -1,36 +1,30 @@
 package hust.ict.globalict.project.object;
 
-import hust.ict.globalict.project.force.Force;
-import hust.ict.globalict.project.utils.Shape;
+import hust.ict.globalict.project.utils.Contants.Shape;
 
 public class MainObject {
 	private Shape shape;
-	private double position;
 	private double mass;
-	private double acceleration;
-	private double velocity;
-	// forces
-	private Force forces[];
-	private Force sumOfForces;
+	private double sideLength;
+	private double radius;
 
-	public MainObject(Shape shape) {
-		this.shape = shape;
+	public MainObject(Shape s) {
+		this.shape = s;
 	}
-
+	
+	public MainObject() {
+		shape = Shape.UNSHAPE;
+		mass = 0;
+		sideLength = 0;
+		radius = 0;
+	}
+	
 	public double getMass() {
 		return mass;
 	}
 
 	public void setMass(double mass) {
 		this.mass = mass;
-	}
-
-	public double getPosition() {
-		return position;
-	}
-
-	public void setPosition(double position) {
-		this.position = position;
 	}
 
 	public Shape getShape() {
@@ -40,28 +34,20 @@ public class MainObject {
 	public void setShape(Shape shape) {
 		this.shape = shape;
 	}
-
-	public double getVelocity() {
-		return velocity;
+	
+	public double getSideLength() {
+		return sideLength;
 	}
 
-	public void setVelocity(double velocity) {
-		this.velocity = velocity;
+	public void setSideLength(double sideLength) {
+		this.sideLength = sideLength;
+	}
+	
+	public double getRadius() {
+		return radius;
 	}
 
-	public double getAcceleration() {
-		return acceleration;
+	public void setRadius(double radius) {
+		this.radius = radius;
 	}
-
-	public void setAcceleration(double acceleration) {
-		this.acceleration = acceleration;
-	}
-
-	public Force getSumOfForces() {
-		return sumOfForces;
-	}
-
-	public void calSumOfForces() {
-	}
-
 }
