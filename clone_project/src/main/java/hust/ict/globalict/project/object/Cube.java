@@ -11,6 +11,7 @@ public class Cube extends MainObject{
     }
 
     public void calAcceleration() {
+        this.setAcceleration(this.getSumOfForces().getStrength()/this.getMass());
 
     }
 
