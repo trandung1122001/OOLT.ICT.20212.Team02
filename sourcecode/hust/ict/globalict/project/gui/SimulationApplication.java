@@ -81,7 +81,9 @@ public class SimulationApplication {
 		frame.getContentPane().add(speedDisplay);
 		DetailCheckboxPanel detailPanel = new DetailCheckboxPanel(simCtrl,  massLb, speedDisplay);
 		frame.getContentPane().add(detailPanel);
-
+		
+		SimStatusPanel simStatusPanel = new SimStatusPanel(simCtrl);
+		frame.getContentPane().add(simStatusPanel);
 		ObjectParamPanel objParamPanel = new ObjectParamPanel(simCtrl, massLb);
 		frame.getContentPane().add(objParamPanel);
 		ObjectSelectedPanel objSelected = new ObjectSelectedPanel(simCtrl, objParamPanel);
@@ -98,23 +100,8 @@ public class SimulationApplication {
 		SurfacePanel surfacePanel = new SurfacePanel();
 		frame.getContentPane().add(surfacePanel);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panel.setBounds(671, 51, 316, 90);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(12, 21, 89, 47);
-		panel.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(113, 21, 89, 47);
-		panel.add(btnNewButton_1);
-		
-		JButton btnNewButton_1_1 = new JButton("New button");
-		btnNewButton_1_1.setBounds(214, 21, 89, 47);
-		panel.add(btnNewButton_1_1);
+	
 
 	}
 }

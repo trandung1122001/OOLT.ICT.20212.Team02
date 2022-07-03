@@ -1,43 +1,62 @@
 package hust.ict.globalict.project.gui;
 
-import java.awt.Font;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-public class SimStatusPanel {
+import hust.ict.globalict.project.controller.SimulationController;
+import hust.ict.globalict.project.utils.Constants.SimState;
 
-	public SimStatusPanel(JFrame mainFrame) {
-		JPanel simStatusPanel = new JPanel();
-		simStatusPanel.setLayout(null);
-		simStatusPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		simStatusPanel.setBounds(566, 76, 291, 101);
-		mainFrame.getContentPane().add(simStatusPanel);
+public class SimStatusPanel extends JPanel implements ActionListener {
 
-		JPanel statusPanel = new JPanel();
-		statusPanel.setLayout(null);
-		statusPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		statusPanel.setBounds(10, 11, 271, 79);
-		simStatusPanel.add(statusPanel);
-
+	public SimStatusPanel(SimulationController simCtrl) {
+		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		setBounds(671, 51, 316, 90);
+		setLayout(null);
 		JButton pauseBtn = new JButton("Pause");
-		pauseBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		pauseBtn.setBounds(10, 21, 89, 39);
-		statusPanel.add(pauseBtn);
+		pauseBtn.setBounds(12, 21, 89, 47);
+		add(pauseBtn);
 
-		JButton btnReset = new JButton("Reset");
-		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnReset.addActionListener(new ActionListener() {
+		JButton continueBtn = new JButton("Continue");
+		continueBtn.setBounds(113, 21, 89, 47);
+		add(continueBtn);
+
+		JButton resetBtn = new JButton("Reset");
+		resetBtn.setBounds(214, 21, 89, 47);
+		add(resetBtn);
+
+		pauseBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (!simCtrl.getStates().contains(SimState.PAUSE)) {
+					simCtrl.getStates().add(SimState.PAUSE);
+				}
 			}
 		});
-		btnReset.setBounds(172, 21, 89, 39);
-		statusPanel.add(btnReset);
+
+		continueBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (simCtrl.getStates().contains(SimState.PAUSE)) {
+					simCtrl.getStates().remove(SimState.PAUSE);
+				}
+			}
+		});
+		
+		resetBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				simCtrl.resetSim();
+			}
+		});
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

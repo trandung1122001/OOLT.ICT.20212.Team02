@@ -50,18 +50,20 @@ public class SimulationController {
 			if (mainObj.getMass() == 0)
 				a = 0;
 			else
-				a = Math.abs(appliedF.getStrength() + friction.getStrength()) / mainObj.getMass();
+				a = (appliedF.getStrength() + friction.getStrength()) / mainObj.getMass();
 		} else if (mainObj.getShape() == Shape.CYLINDER) {
 			if (mainObj.getMass() == 0 || mainObj.getRadius() == 0)
 				a = 0;
-			else
+			else {
 				a = friction.getStrength() / 0.5 / mainObj.getMass() / mainObj.getRadius() / mainObj.getRadius();
+			}
+				
 		}
 		this.acceleration = a;
 	}
 
 	public void reCalPositionAfter(double sec) {
-		this.position = this.position + acceleration * sec;
+		this.position = this.position + velocity * sec;
 	}
 
 	public void reCalVelocityAfter(double sec) {
@@ -97,7 +99,7 @@ public class SimulationController {
 	
 	public void resetSim() {
 		position = 0;
-		acceleration = 0;
+		//acceleration = 0;
 		velocity = 0;
 	}
 	
