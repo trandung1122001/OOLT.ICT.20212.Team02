@@ -39,7 +39,8 @@ public class ForceDisplay extends JLabel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (fn == Fname.SUMOFFORCES) {
-			if (simCtrl.getStates().contains(SimState.SHOWING_SUMOFFORCES_ARROW)) {
+			if (simCtrl.getStates().contains(SimState.SHOWING_SUMOFFORCES_ARROW) 
+					&& simCtrl.getSumOfForce().getStrength() != 0) {
 				f = simCtrl.getSumOfForce();
 				fdir = f.getDirection();
 				if (fdir == Direction.LEFT)
@@ -51,19 +52,27 @@ public class ForceDisplay extends JLabel implements ActionListener {
 		}
 		if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
 			if (fn == Fname.APPLIEDFORCE) {
-				f = simCtrl.getAppliedF();
-				fdir = f.getDirection();
-				if (fdir == Direction.LEFT)
-					display(Constants.BLUE_LEFT_ARROW, new Point(590, 373));
-				else if (fdir == Direction.RIGHT)
-					display(Constants.BLUE_RIGHT_ARROW, new Point(715, 373));
+				if (simCtrl.getAppliedF().getStrength() != 0) {
+					f = simCtrl.getAppliedF();
+					fdir = f.getDirection();
+					if (fdir == Direction.LEFT)
+						display(Constants.BLUE_LEFT_ARROW, new Point(590, 373));
+					else if (fdir == Direction.RIGHT)
+						display(Constants.BLUE_RIGHT_ARROW, new Point(715, 373));
+				} else {
+					setVisible(false);
+				}
 			} else if (fn == Fname.FRICTION) {
-				f = simCtrl.getFriction();
-				fdir = f.getDirection();
-				if (fdir == Direction.LEFT)
-					display(Constants.RED_LEFT_ARROW, new Point(590, 473));
-				else if (fdir == Direction.RIGHT)
-					display(Constants.RED_RIGHT_ARROW, new Point(715, 473));
+				if (simCtrl.getFriction().getStrength() != 0) {
+					f = simCtrl.getFriction();
+					fdir = f.getDirection();
+					if (fdir == Direction.LEFT)
+						display(Constants.RED_LEFT_ARROW, new Point(590, 473));
+					else if (fdir == Direction.RIGHT)
+						display(Constants.RED_RIGHT_ARROW, new Point(715, 473));
+				} else {
+					setVisible(false);
+				}
 			}
 		}
 

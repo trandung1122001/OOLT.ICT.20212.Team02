@@ -43,7 +43,7 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 		tf1.setHorizontalAlignment(SwingConstants.CENTER);
 		tf1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tf1.setColumns(4);
-		tf1.setBounds(226, 20, 52, 30);
+		tf1.setBounds(201, 20, 77, 30);
 		add(tf1);
 		lb1 = new JLabel();
 		lb1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -56,7 +56,7 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 		tf2.setHorizontalAlignment(SwingConstants.CENTER);
 		tf2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tf2.setColumns(4);
-		tf2.setBounds(226, 70, 52, 30);
+		tf2.setBounds(201, 70, 77, 30);
 		add(tf2);
 		lb2 = new JLabel();
 		lb2.setHorizontalAlignment(SwingConstants.LEFT);
@@ -65,15 +65,15 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 		add(lb2);
 
 		Timer timer = new Timer(Constants.DELTA_TIME_MILISECS, (ActionListener) this);
-		
+
 		tf3 = new JTextField();
 		tf3.setHorizontalAlignment(SwingConstants.CENTER);
 		tf3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tf3.setFocusable(false);
 		tf3.setColumns(4);
-		tf3.setBounds(226, 120, 52, 30);
+		tf3.setBounds(201, 120, 77, 30);
 		add(tf3);
-		
+
 		lb3 = new JLabel();
 		lb3.setHorizontalAlignment(SwingConstants.LEFT);
 		lb3.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -94,14 +94,29 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 			}
 			tf1.setText(String.format("%.2f", Math.abs(simCtrl.getAcceleration())));
 			tf2.setText(String.format("%.2f", Math.abs(simCtrl.getVelocity())));
-			tf3.setText(String.format("%.2f", (simCtrl.getPosition())));
-			lb3.setText("Position [m]");
+			double p = simCtrl.getPosition();
+			
+			
 			if (simCtrl.getMainObj().getShape() == Shape.CUBE) {
 				lb1.setText("Acceleration [m/s2]");
 				lb2.setText("Velocity [m/s]");
+				if (p > 1000) {
+					tf3.setText(String.format("%.2f", p/1000));
+					lb3.setText("Position [km]");
+				} else {
+					tf3.setText(String.format("%.2f", p));
+					lb3.setText("Position [m]");
+				}
 			} else if (simCtrl.getMainObj().getShape() == Shape.CYLINDER) {
 				lb1.setText("Angular Acceleration [rad/s2]");
 				lb2.setText("Angular Velocity [rad/s]");
+				if (p > 1000) {
+					tf3.setText(String.format("%.2f", p/1000));
+					lb3.setText("Angular Position [km]");
+				} else {
+					tf3.setText(String.format("%.2f", p));
+					lb3.setText("Angular Position [m]");
+				}
 			}
 		} else
 			setVisible(false);

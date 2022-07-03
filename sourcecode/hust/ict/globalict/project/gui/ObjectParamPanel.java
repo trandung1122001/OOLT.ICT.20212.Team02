@@ -18,7 +18,7 @@ import java.awt.event.FocusEvent;
 public class ObjectParamPanel extends JPanel {
 	private JTextField pText1, pText2;
 	private JLabel pTitle1, pTitle2;
-
+	
 	public ObjectParamPanel(SimulationController simCtrl, JLabel massLb) {
 		setVisible(false);
 		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -56,20 +56,23 @@ public class ObjectParamPanel extends JPanel {
 		pText2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (simCtrl.getMainObj().getShape() == Shape.CUBE)
+				if (simCtrl.getMainObj().getShape() == Shape.CUBE) {
 					try {
-						Double value = Double.parseDouble(pText1.getText());
+						Double value = Double.parseDouble(pText2.getText());
 						simCtrl.updateObjSideLength(value);
 					} catch (NumberFormatException ex) {
 						pText2.setText(simCtrl.getMainObj().getSideLength() + "");
 					}
-				else if (simCtrl.getMainObj().getShape() == Shape.CYLINDER)
+				}
+
+				else if (simCtrl.getMainObj().getShape() == Shape.CYLINDER) {
 					try {
-						Double value = Double.parseDouble(pText1.getText());
+						Double value = Double.parseDouble(pText2.getText());
 						simCtrl.updateObjRadius(value);
 					} catch (NumberFormatException ex) {
 						pText2.setText(simCtrl.getMainObj().getRadius() + "");
 					}
+				}
 			}
 		});
 		pText2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -87,5 +90,10 @@ public class ObjectParamPanel extends JPanel {
 	public void setTitle(String t1, String t2) {
 		pTitle1.setText(t1);
 		pTitle2.setText(t2);
+	}
+
+	public void setContent(double t1, double t2) {
+		pText1.setText(t1 + "");
+		pText2.setText(t2 + "");
 	}
 }
