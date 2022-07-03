@@ -47,27 +47,28 @@ public class SimulationController {
 		calFriction();
 		double a = 0;
 		if (mainObj.getShape() == Shape.CUBE) {
-			if (mainObj.getMass() == 0)
-				a = 0;
-			else
+			if (mainObj.getMass() != 0)
 				a = (appliedF.getStrength() + friction.getStrength()) / mainObj.getMass();
 		} else if (mainObj.getShape() == Shape.CYLINDER) {
 			if (mainObj.getMass() == 0 || mainObj.getRadius() == 0)
 				a = 0;
 			else {
-				a = friction.getStrength() / 0.5 / mainObj.getMass() / mainObj.getRadius() / mainObj.getRadius();
+				a = friction.getStrength() / (-0.5) / mainObj.getMass() / mainObj.getRadius() / mainObj.getRadius();
 			}
-				
+
 		}
 		this.acceleration = a;
 	}
 
 	public void reCalPositionAfter(double sec) {
-		this.position = this.position + velocity * sec;
+		double r = 1;
+		if (this.mainObj.getShape() == Shape.CYLINDER)
+			r = this.mainObj.getRadius();
+		this.position = this.position + r * velocity * sec;
 	}
 
 	public void reCalVelocityAfter(double sec) {
-		this.velocity = this.velocity + acceleration * sec;
+			this.velocity = this.velocity + acceleration * sec;
 	}
 
 	public MainObject getMainObj() {
@@ -85,6 +86,7 @@ public class SimulationController {
 
 	public void updateObjRadius(double m) {
 		this.mainObj.setRadius(m);
+		calAcceleration();
 	}
 
 	public void updateObjSideLength(double m) {
@@ -96,13 +98,13 @@ public class SimulationController {
 		velocity = 0;
 		mainObj = new MainObject(s);
 	}
-	
+
 	public void resetSim() {
 		position = 0;
-		//acceleration = 0;
+		// acceleration = 0;
 		velocity = 0;
 	}
-	
+
 	public Surface getSurface() {
 		return surface;
 	}

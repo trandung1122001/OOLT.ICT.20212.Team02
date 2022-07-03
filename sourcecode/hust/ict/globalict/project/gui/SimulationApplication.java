@@ -29,7 +29,6 @@ public class SimulationApplication {
 
 	private JFrame frame;
 	private SimulationController simCtrl;
-	private int deltaT = 1000; // ms
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
