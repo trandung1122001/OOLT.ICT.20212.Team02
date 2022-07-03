@@ -49,8 +49,7 @@ public class ForceDisplay extends JLabel implements ActionListener {
 					display(Constants.YELLOW_RIGHT_ARROW, new Point(715, 273));
 			} else
 				setVisible(false);
-		}
-		if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
+		} else if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
 			if (fn == Fname.APPLIEDFORCE) {
 				if (simCtrl.getAppliedF().getStrength() != 0) {
 					f = simCtrl.getAppliedF();
@@ -74,7 +73,8 @@ public class ForceDisplay extends JLabel implements ActionListener {
 					setVisible(false);
 				}
 			}
-		}
+		} else
+			setVisible(false);
 
 	}
 }
