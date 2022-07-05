@@ -5,3 +5,4 @@ sourcecode/.project
 sourcecode/.classpath
 design/DetailClassDiagram.asta.lock
 *.lock
+/.metadata/
