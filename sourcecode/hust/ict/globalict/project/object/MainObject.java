@@ -2,25 +2,8 @@ package hust.ict.globalict.project.object;
 
 import hust.ict.globalict.project.utils.Constants.Shape;
 
-public class MainObject {
-	private Shape shape;
-	private double mass;
-	private double sideLength;
-	private double radius;
-
-	public MainObject(Shape s) {
-		this.shape = s;
-		mass = 0;
-		sideLength = 0;
-		radius = 0;
-	}
-	
-	public MainObject() {
-		shape = Shape.UNSHAPE;
-		mass = 0;
-		sideLength = 0;
-		radius = 0;
-	}
+public abstract class MainObject {
+	private double mass = 0;
 	
 	public double getMass() {
 		return mass;
@@ -30,27 +13,5 @@ public class MainObject {
 		this.mass = mass;
 	}
 
-	public Shape getShape() {
-		return shape;
-	}
-
-	public void setShape(Shape shape) {
-		this.shape = shape;
-	}
-	
-	public double getSideLength() {
-		return sideLength;
-	}
-
-	public void setSideLength(double sideLength) {
-		this.sideLength = sideLength;
-	}
-	
-	public double getRadius() {
-		return radius;
-	}
-
-	public void setRadius(double radius) {
-		this.radius = radius;
-	}
+	public abstract Shape getShape();
 }
