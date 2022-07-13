@@ -11,21 +11,21 @@ public final class Constants {
 	public static final String YELLOW_RIGHT_ARROW = "/assets/force/yellowRight.png";
 	public static final int DELTA_TIME_MILISECS = 1000;
 
-	public enum Direction {
+	public static enum Direction {
 		UP, 
 		DOWN, 
 		RIGHT, 
 		LEFT
 	}
 
-	public enum Fname {
+	public static enum Fname {
 		APPLIEDFORCE, 
 		FRICTION, 
 		GRAVITATION, 
 		SUMOFFORCES
 	}
 
-	public enum Shape {
+	public static enum Shape {
 		CUBE, 
 		CYLINDER, 
 		UNSHAPE

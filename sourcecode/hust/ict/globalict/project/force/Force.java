@@ -8,11 +8,10 @@ public class Force {
 	private double strength;
 	private Direction direction;
 	private MainObject obj;
-	
+
 	public Force() {
-		this.strength = 0;
 	}
-	
+
 	public Force(Fname fname, double strength, Direction direction) {
 		this.fname = fname;
 		this.strength = strength;
@@ -40,10 +39,6 @@ public class Force {
 	}
 
 	public void setStrength(double strength) {
-		if (fname != Fname.GRAVITATION) {
-			if (strength > 0) setDirection(Direction.RIGHT);
-			else if (strength < 0) setDirection(Direction.RIGHT);
-		}
 		this.strength = strength;
 	}
 
@@ -55,4 +50,10 @@ public class Force {
 		this.direction = direction;
 	}
 
+	public void recalStrAndDir() {
+		if (strength > 0)
+			setDirection(Direction.RIGHT);
+		else if (strength < 0)
+			setDirection(Direction.RIGHT);
+	}
 }
