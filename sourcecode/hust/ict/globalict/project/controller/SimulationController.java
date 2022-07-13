@@ -15,29 +15,19 @@ public class SimulationController {
 
 	private MainObject mainObj;
 	private Surface surface;
+	private Force gravitation, appliedF, friction, sumOfForce;
 
-	private Gravitation gravitation;
-	private AppliedForce appliedF;
-	private Friction friction;
-	private Force sumOfForce;
-
-	private Set<SimState> states;
-
-	// private double deltaTime = 0.5f;
-	private double position;
-	private double acceleration;
-	private double velocity;
+	private double position = 0;
+	private double acceleration = 0;
+	private double velocity = 0;
+	
+	private Set<SimState> states = new HashSet<SimState>();;
 
 	public SimulationController() {
-		states = new HashSet<SimState>();
-		mainObj = new MainObject();
-		position = 0;
-		acceleration = 0;
-		velocity = 0;
 		surface = new Surface();
 		gravitation = new Gravitation(this.mainObj);
-		appliedF = new AppliedForce(this.mainObj);
-		friction = new Friction(surface, mainObj, gravitation, appliedF);
+//		appliedF = new AppliedForce(this.mainObj);
+//		friction = new Friction(surface, mainObj, gravitation, appliedF);
 		sumOfForce = new Force();
 		calFriction();
 		calSumOfForce();

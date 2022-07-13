@@ -1,17 +1,14 @@
 package hust.ict.globalict.project.force;
 
 import java.util.ArrayList;
-
-import hust.ict.globalict.project.object.MainObject;
 import hust.ict.globalict.project.utils.Constants.Fname;
 
 public class SumOfForce extends Force {
 	private ArrayList<Force> forces;
-
-	public SumOfForce(MainObject obj, Force... forces) {
+	
+	public SumOfForce(Force... forces) {
 		this.setFname(Fname.SUMOFFORCES);
 		AddForce(forces);
-
 	}
 
 	public void AddForce(Force... forces) {
