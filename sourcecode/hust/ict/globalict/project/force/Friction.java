@@ -8,31 +8,29 @@ public class Friction extends Force {
 	private Surface sf;
 	private Force appliedF;
 
-	public Friction(Surface sf, MainObject obj, Force appliedF) {
+	public Friction(Surface sf, Force appliedF) {
 		this.setFname(Fname.FRICTION);
 		this.setSf(sf);
-		this.setObj(obj);
 		this.setAppliedForce(appliedF);
 		recalStrAndDir();
-		if (appliedF.getDirection() == Direction.LEFT)
-			this.setDirection(Direction.RIGHT);
-		else
-			this.setDirection(Direction.LEFT);
 	}
 
-	@Override
-	public void recalStrAndDir() {
+	public void recalStrAndDir(MainObject obj) {
+		if (obj == null) {
+			setStrength(0);
+			return;
+		}
 		double a = Math.abs(appliedF.getStrength());
-		double n = this.getObj().getMass() * 10;
+		double n = obj.getMass() * 10;
 		double sc = sf.getStaticCoefficient();
 		double kc = sf.getKineticCoefficient();
 		double rlt = 0;
-		if (this.getObj().getShape() == Shape.CUBE) {
+		if (obj.getShape() == Shape.CUBE) {
 			if (a <= n * sc)
 				rlt = a;
 			else
 				rlt = n * kc;
-		} else if (this.getObj().getShape() == Shape.CYLINDER) {
+		} else if (obj.getShape() == Shape.CYLINDER) {
 			if (a <= 3 * n * sc)
 				rlt = a / 3;
 			else
@@ -40,11 +38,8 @@ public class Friction extends Force {
 		}
 		if (appliedF.getStrength() > 0) {
 			setStrength(rlt * -1);
-			setDirection(Direction.LEFT);
 		} else {
-
 			setStrength(rlt);
-			setDirection(Direction.RIGHT);
 		}
 	}
 

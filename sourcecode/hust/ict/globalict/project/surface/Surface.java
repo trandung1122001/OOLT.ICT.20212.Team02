@@ -8,7 +8,7 @@ public class Surface {
 		this.kineticCoefficient = kc;
 		this.staticCoefficient = sc;
 	}
-	
+
 	public Surface() {
 		this.kineticCoefficient = 0;
 		this.staticCoefficient = 0;

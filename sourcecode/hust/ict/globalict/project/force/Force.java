@@ -5,17 +5,22 @@ import hust.ict.globalict.project.utils.Constants.*;
 
 public class Force {
 	private Fname fname;
-	private double strength;
+	private double strength = 0;
 	private Direction direction;
-	private MainObject obj;
+//	private MainObject obj;
 
 	public Force() {
 	}
+	
+	public Force(Fname fname) {
+		this.fname = fname;
+	}
 
-	public Force(Fname fname, double strength, Direction direction) {
+	public Force(Fname fname, double strength, Direction direction, MainObject obj) {
 		this.fname = fname;
 		this.strength = strength;
 		this.direction = direction;
+//		this.obj = obj;
 	}
 
 	public Fname getFname() {
@@ -26,13 +31,13 @@ public class Force {
 		this.fname = fname;
 	}
 
-	public MainObject getObj() {
-		return obj;
-	}
-
-	public void setObj(MainObject obj) {
-		this.obj = obj;
-	}
+//	public MainObject getObj() {
+//		return obj;
+//	}
+//
+//	public void setObj(MainObject obj) {
+//		this.obj = obj;
+//	}
 
 	public double getStrength() {
 		return strength;
@@ -40,6 +45,9 @@ public class Force {
 
 	public void setStrength(double strength) {
 		this.strength = strength;
+		if (fname != Fname.GRAVITATION) {
+			recalStrAndDir();
+		}
 	}
 
 	public Direction getDirection() {

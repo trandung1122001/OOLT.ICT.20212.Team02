@@ -34,7 +34,7 @@ public class CylinderObject extends MainObject{
 	@Override
 	public void recalAcceleration(SumOfForce sof) {
 		double m = this.getMass();
-		Force f = sof.GetForceByName(Fname.FRICTION);
+		Force f = sof.getFriction();
 		if (m == 0 || radius == 0 || f == null ||  f.getStrength() == 0)
 			this.setAcceleration(0);
 		else {

@@ -5,10 +5,17 @@ import hust.ict.globalict.project.utils.Constants.*;
 
 public class Gravitation extends Force {
 
-	public Gravitation(MainObject obj) {
+	public Gravitation() {
 		this.setFname(Fname.GRAVITATION);
-		this.setObj(obj);
-		this.setStrength(obj.getMass() * 10);
 		this.setDirection(Direction.DOWN);
+		recalStrAndDir();
+	}
+	
+	public void recalStrAndDir(MainObject obj) {
+		if (obj == null) {
+			setStrength(0);
+			return;
+		}
+		this.setStrength(obj.getMass() * 10);
 	}
 }
