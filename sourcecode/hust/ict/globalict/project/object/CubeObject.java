@@ -39,6 +39,6 @@ public class CubeObject extends MainObject {
 
 	@Override
 	public void recalPosition() {
-		this.setPosition(this.getPosition() + this.getVelocity() * Constants.DELTA_TIME / 1000);
+		this.setPosition(this.getPosition() + this.getVelocity() / 1000 * Constants.DELTA_TIME);
 	}
 }

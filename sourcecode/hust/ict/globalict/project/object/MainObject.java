@@ -19,7 +19,7 @@ public abstract class MainObject {
 	public abstract void recalAcceleration(Force fri, Force sof);
 
 	public void recalVelocity() {
-		this.setVelocity(this.getVelocity() + this.getAcceleration() * Constants.DELTA_TIME / 1000);
+		this.setVelocity(this.getVelocity() + this.getAcceleration() / 1000 * Constants.DELTA_TIME);
 	};
 
 	public abstract void recalPosition();

@@ -41,6 +41,6 @@ public class CylinderObject extends MainObject{
 
 	@Override
 	public void recalPosition() {
-		this.setPosition(this.getPosition() + radius * this.getVelocity() * Constants.DELTA_TIME / 1000);
+		this.setPosition(this.getPosition() + radius * this.getVelocity() / 1000 * Constants.DELTA_TIME);
 	}
 }

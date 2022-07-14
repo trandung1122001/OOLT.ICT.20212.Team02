@@ -83,7 +83,7 @@ public class SimulationApplication {
 		FrictionPanel frictionPanel = new FrictionPanel(simCtrl, frictionDisplay);
 		frame.getContentPane().add(frictionPanel);
 
-		SurfacePanel surfacePanel = new SurfacePanel();
+		SurfacePanel surfacePanel = new SurfacePanel(simCtrl);
 		frame.getContentPane().add(surfacePanel);
 
 	}

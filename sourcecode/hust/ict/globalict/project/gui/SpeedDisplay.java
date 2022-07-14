@@ -89,7 +89,7 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 			}
 			tf1.setText(String.format("%.2f", Math.abs(simCtrl.getMainObj().getAcceleration())));
 			tf2.setText(String.format("%.2f", Math.abs(simCtrl.getMainObj().getVelocity())));
-			double p = simCtrl.getMainObj().getPosition();
+			double p = Math.abs(simCtrl.getMainObj().getPosition());
 			
 			
 			if (simCtrl.getMainObj().getShape() == Shape.CUBE) {
@@ -105,13 +105,8 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 			} else if (simCtrl.getMainObj().getShape() == Shape.CYLINDER) {
 				lb1.setText("Angular Acceleration [rad/s2]");
 				lb2.setText("Angular Velocity [rad/s]");
-				if (p > 1000) {
-					tf3.setText(String.format("%.2f", p/1000));
-					lb3.setText("Angular Position [km]");
-				} else {
-					tf3.setText(String.format("%.2f", p));
-					lb3.setText("Angular Position [m]");
-				}
+				tf3.setText(String.format("%.2f", p));
+				lb3.setText("Angular Position [m]");
 			}
 		} else {
 			setVisible(false);
