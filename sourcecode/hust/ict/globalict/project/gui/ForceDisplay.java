@@ -23,7 +23,7 @@ public class ForceDisplay extends JLabel implements ActionListener {
 		this.simCtrl = simCtrl;
 		this.fn = fn;
 		setSize(121, 60);
-		Timer timer = new Timer(Constants.DELTA_TIME * 1000, (ActionListener) this);
+		Timer timer = new Timer(Constants.DELTA_TIME, (ActionListener) this);
 		timer.setInitialDelay(1);
 		timer.start();
 	}
@@ -49,8 +49,8 @@ public class ForceDisplay extends JLabel implements ActionListener {
 				setVisible(false);
 		} else if (simCtrl.checkState(SimState.SHOWING_FORCES_ARROW)) {
 			if (fn == Fname.APPLIEDFORCE) {
-				if (simCtrl.getSumOfForce().getAppliedForce().getStrength() != 0) {
-					f = simCtrl.getSumOfForce().getAppliedForce();
+				if (simCtrl.getAppliedForce().getStrength() != 0) {
+					f = simCtrl.getAppliedForce();
 					fdir = f.getDirection();
 					if (fdir == Direction.LEFT)
 						display(Constants.BLUE_LEFT_ARROW, new Point(590, 373));
@@ -60,8 +60,8 @@ public class ForceDisplay extends JLabel implements ActionListener {
 					setVisible(false);
 				}
 			} else if (fn == Fname.FRICTION) {
-				if (simCtrl.getSumOfForce().getFriction().getStrength() != 0) {
-					f = simCtrl.getSumOfForce().getFriction();
+				if (simCtrl.getFriction().getStrength() != 0) {
+					f = simCtrl.getFriction();
 					fdir = f.getDirection();
 					if (fdir == Direction.LEFT)
 						display(Constants.RED_LEFT_ARROW, new Point(590, 473));

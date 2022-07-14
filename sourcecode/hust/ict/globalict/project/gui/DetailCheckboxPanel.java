@@ -113,7 +113,7 @@ public class DetailCheckboxPanel extends JPanel {
 		speedCB.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == 1) {
-					simCtrl.removeState(SimState.SHOWING_SPEED);
+					simCtrl.addState(SimState.SHOWING_SPEED);
 				}
 				else {
 					simCtrl.removeState(SimState.SHOWING_SPEED);

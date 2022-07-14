@@ -1,6 +1,6 @@
 package hust.ict.globalict.project.object;
 
-import hust.ict.globalict.project.force.SumOfForce;
+import hust.ict.globalict.project.force.Force;
 import hust.ict.globalict.project.utils.Constants;
 import hust.ict.globalict.project.utils.Constants.Shape;
 
@@ -16,10 +16,10 @@ public abstract class MainObject {
 
 	public abstract Shape getShape();
 
-	public abstract void recalAcceleration(SumOfForce sof);
+	public abstract void recalAcceleration(Force fri, Force sof);
 
 	public void recalVelocity() {
-		this.setVelocity(this.getVelocity() + this.getAcceleration() * Constants.DELTA_TIME);
+		this.setVelocity(this.getVelocity() + this.getAcceleration() * Constants.DELTA_TIME / 1000);
 	};
 
 	public abstract void recalPosition();

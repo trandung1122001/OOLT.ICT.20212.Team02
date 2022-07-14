@@ -1,6 +1,6 @@
 package hust.ict.globalict.project.object;
 
-import hust.ict.globalict.project.force.SumOfForce;
+import hust.ict.globalict.project.force.Force;
 import hust.ict.globalict.project.utils.Constants;
 import hust.ict.globalict.project.utils.Constants.Shape;
 
@@ -30,7 +30,7 @@ public class CubeObject extends MainObject {
 	}
 
 	@Override
-	public void recalAcceleration(SumOfForce sof) {
+	public void recalAcceleration(Force fri, Force sof) {
 		if (this.getMass() != 0)
 			this.setAcceleration(sof.getStrength() / this.getMass());
 		else
@@ -39,6 +39,6 @@ public class CubeObject extends MainObject {
 
 	@Override
 	public void recalPosition() {
-		this.setPosition(this.getPosition() + this.getVelocity() * Constants.DELTA_TIME);
+		this.setPosition(this.getPosition() + this.getVelocity() * Constants.DELTA_TIME / 1000);
 	}
 }

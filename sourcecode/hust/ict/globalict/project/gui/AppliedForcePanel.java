@@ -53,7 +53,7 @@ public class AppliedForcePanel extends JPanel {
 					simCtrl.updateAppliedFStrength(value);
 					afSlder.setValue(value.intValue());
 				} catch (NumberFormatException ex) {
-					afTextField.setText(simCtrl.getSumOfForce().getAppliedForce().getStrength() + "");
+					afTextField.setText(simCtrl.getAppliedForce().getStrength() + "");
 				}
 			}
 		});
@@ -61,7 +61,7 @@ public class AppliedForcePanel extends JPanel {
 		afSlder.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				simCtrl.updateAppliedFStrength(afSlder.getValue());
-				afTextField.setText(simCtrl.getSumOfForce().getAppliedForce().getStrength() + "");
+				afTextField.setText(simCtrl.getAppliedForce().getStrength() + "");
 			}
 		});
 

@@ -10,7 +10,7 @@ public final class Constants {
 	public static final String YELLOW_LEFT_ARROW = "/assets/force/yellowLeft.png";
 	public static final String YELLOW_RIGHT_ARROW = "/assets/force/yellowRight.png";
 	
-	public static final int DELTA_TIME = 1;
+	public static final int DELTA_TIME = 500;	//mili second
 
 	public static enum Direction {
 		UP, 

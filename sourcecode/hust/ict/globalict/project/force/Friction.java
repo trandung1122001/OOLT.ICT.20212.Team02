@@ -5,17 +5,13 @@ import hust.ict.globalict.project.surface.Surface;
 import hust.ict.globalict.project.utils.Constants.*;
 
 public class Friction extends Force {
-	private Surface sf;
-	private Force appliedF;
 
-	public Friction(Surface sf, Force appliedF) {
+	public Friction() {
 		this.setFname(Fname.FRICTION);
-		this.setSf(sf);
-		this.setAppliedForce(appliedF);
 		recalStrAndDir();
 	}
 
-	public void recalStrAndDir(MainObject obj) {
+	public void recalStrAndDir(MainObject obj, Force appliedF, Surface sf) {
 		if (obj == null) {
 			setStrength(0);
 			return;
@@ -41,17 +37,6 @@ public class Friction extends Force {
 		} else {
 			setStrength(rlt);
 		}
-	}
-
-	public Surface getSf() {
-		return sf;
-	}
-
-	public void setSf(Surface sf) {
-		this.sf = sf;
-	}
-
-	public void setAppliedForce(Force appliedForce) {
-		this.appliedF = appliedForce;
+		
 	}
 }

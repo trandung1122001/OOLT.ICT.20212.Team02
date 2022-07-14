@@ -30,7 +30,7 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 		setLayout(null);
 		setLocation(10, 10);
 		setSize(300, 170);
-		setVisible(false);
+		setVisible(true);
 
 		tf1 = new JTextField();
 		tf1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -113,7 +113,9 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 					lb3.setText("Angular Position [m]");
 				}
 			}
-		} else
+		} else {
 			setVisible(false);
+		}
+			
 	}
 }

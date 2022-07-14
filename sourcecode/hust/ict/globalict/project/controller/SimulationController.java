@@ -9,58 +9,53 @@ import hust.ict.globalict.project.surface.Surface;
 import hust.ict.globalict.project.utils.Constants.*;
 
 public class SimulationController {
-	// OnUpdateValueOnGuiHandler
+	
 
 	private MainObject mainObj;
-	private SumOfForce sumOfForce;
+	private Surface surface;
+	private Force sumOfForce, gravitation, appliedF, friction;
+	
 
-	private Set<SimState> states = new HashSet<SimState>();;
+	private Set<SimState> states;
 
+	//Contructor
 	public SimulationController() {
+		initialize();
+	}
+	
+	public void initialize() {
 		mainObj = new CubeObject();
-		Surface surface = new Surface();
-		Force gravitation, appliedF, friction;
+		surface = new Surface();
 		gravitation = new Gravitation();
 		appliedF = new Force(Fname.APPLIEDFORCE);
-		friction = new Friction(surface, appliedF);
-		sumOfForce = new SumOfForce(gravitation, appliedF, friction);
+		friction = new Friction();
+		sumOfForce = new SumOfForce();
+		states = new HashSet<SimState>();
 	}
-
+	
+	
+	// OnUpdateValueOnGuiHandler
 	public void recalSimulation() {
-		sumOfForce.getGravitation().recalStrAndDir(mainObj);
-		sumOfForce.getFriction().recalStrAndDir(mainObj);
-		sumOfForce.recalStrAndDir();
-		mainObj.recalAcceleration(sumOfForce);
+		((Gravitation) gravitation).recalStrAndDir(mainObj);
+		((Friction) friction).recalStrAndDir(mainObj, appliedF, surface);
+		((SumOfForce) sumOfForce).recalStrAndDir(appliedF, friction);
+		mainObj.recalAcceleration(friction, sumOfForce);
 		mainObj.recalVelocity();
 		mainObj.recalPosition();
 	}
-
-	public void resetSimulation() {
-		mainObj.setVelocity(0);
-		mainObj.setPosition(0);
-	}
-
-	public void pauseSimulation() {
-		if (!states.contains(SimState.PAUSE))
-			states.add(SimState.PAUSE);
-	}
-
-	public void continueSimulation() {
-		states.remove(SimState.PAUSE);
-	}
-
+	
 	public void updateStaticCoef(double sc) {
-		sumOfForce.getFriction().getSf().setStaticCoefficient(sc);
+		surface.setStaticCoefficient(sc);
 		recalSimulation();
 	}
 
 	public void updateKineticCoef(double kc) {
-		sumOfForce.getFriction().getSf().setKineticCoefficient(kc);
+		surface.setKineticCoefficient(kc);
 		recalSimulation();
 	}
 
 	public void updateAppliedFStrength(double f) {
-		sumOfForce.getAppliedForce().setStrength(f);
+		appliedF.setStrength(f);
 		recalSimulation();
 	}
 
@@ -88,18 +83,29 @@ public class SimulationController {
 		recalSimulation();
 	}
 
+
+	//Forces
+	public SumOfForce getSumOfForce() {
+		return (SumOfForce) sumOfForce;
+	}
+	
+	public Gravitation getGravitation() {
+		return (Gravitation) gravitation;
+	}
+	
+	public Force getAppliedForce() {
+		return appliedF;
+	}
+	
+	public Friction getFriction() {
+		return (Friction) friction;
+	}
+
+	//Object
 	public MainObject getMainObj() {
 		return mainObj;
 	}
-
-	public SumOfForce getSumOfForce() {
-		return sumOfForce;
-	}
-
-	public Surface getSurface() {
-		return sumOfForce.getFriction().getSf();
-	}
-
+	
 	public double getObjectRadius() {
 		if (mainObj instanceof CylinderObject)
 			return ((CylinderObject) mainObj).getRadius();
@@ -112,10 +118,21 @@ public class SimulationController {
 		return 0;
 	}
 
-//	public Set<SimState> getStates() {
-//		return this.states;
-//	}
+	//State
+	public void resetSimulation() {
+		mainObj.setVelocity(0);
+		mainObj.setPosition(0);
+	}
 
+	public void pauseSimulation() {
+		if (!states.contains(SimState.PAUSE))
+			states.add(SimState.PAUSE);
+	}
+
+	public void continueSimulation() {
+		states.remove(SimState.PAUSE);
+	}
+	
 	public void addState(SimState state) {
 		this.states.add(state);
 	}
@@ -126,5 +143,10 @@ public class SimulationController {
 
 	public boolean checkState(SimState state) {
 		return this.states.contains(state);
+	}
+	
+	//Surface 
+	public Surface getSurface() {
+		return surface;
 	}
 }

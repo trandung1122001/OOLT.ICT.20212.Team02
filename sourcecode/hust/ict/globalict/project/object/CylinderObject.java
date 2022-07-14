@@ -1,9 +1,7 @@
 package hust.ict.globalict.project.object;
 
 import hust.ict.globalict.project.force.Force;
-import hust.ict.globalict.project.force.SumOfForce;
 import hust.ict.globalict.project.utils.Constants;
-import hust.ict.globalict.project.utils.Constants.Fname;
 import hust.ict.globalict.project.utils.Constants.Shape;
 
 public class CylinderObject extends MainObject{
@@ -32,18 +30,17 @@ public class CylinderObject extends MainObject{
 	}
 
 	@Override
-	public void recalAcceleration(SumOfForce sof) {
+	public void recalAcceleration(Force fri, Force sof) {
 		double m = this.getMass();
-		Force f = sof.getFriction();
-		if (m == 0 || radius == 0 || f == null ||  f.getStrength() == 0)
+		if (m == 0 || radius == 0 || fri == null ||  fri.getStrength() == 0)
 			this.setAcceleration(0);
 		else {
-			this.setAcceleration(f.getStrength() / (-0.5) / m / radius / radius);
+			this.setAcceleration(fri.getStrength() / (-0.5) / m / radius / radius);
 		}
 	}
 
 	@Override
 	public void recalPosition() {
-		this.setPosition(this.getPosition() + radius * this.getVelocity() * Constants.DELTA_TIME);
+		this.setPosition(this.getPosition() + radius * this.getVelocity() * Constants.DELTA_TIME / 1000);
 	}
 }
