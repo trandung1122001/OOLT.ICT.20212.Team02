@@ -3,7 +3,6 @@ package hust.ict.globalict.project.gui;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,11 +11,9 @@ import javax.swing.Timer;
 
 import hust.ict.globalict.project.controller.SimulationController;
 import hust.ict.globalict.project.utils.Constants;
-import hust.ict.globalict.project.utils.Constants.Fname;
 import hust.ict.globalict.project.utils.Constants.Shape;
 import hust.ict.globalict.project.utils.Constants.SimState;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
@@ -28,9 +25,7 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 	private SimulationController simCtrl;
 
 	public SpeedDisplay(SimulationController simCtrl) {
-
 		this.simCtrl = simCtrl;
-
 		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		setLayout(null);
 		setLocation(10, 10);

@@ -118,7 +118,6 @@ public class DetailCheckboxPanel extends JPanel {
 				else {
 					simCtrl.removeState(SimState.SHOWING_SPEED);
 				}
-					
 			}
 		});
 	}

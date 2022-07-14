@@ -17,6 +17,7 @@ public class SimulationController {
 	private Set<SimState> states = new HashSet<SimState>();;
 
 	public SimulationController() {
+		mainObj = new CubeObject();
 		Surface surface = new Surface();
 		Force gravitation, appliedF, friction;
 		gravitation = new Gravitation();

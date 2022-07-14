@@ -46,7 +46,7 @@ public class Force {
 	public void setStrength(double strength) {
 		this.strength = strength;
 		if (fname != Fname.GRAVITATION) {
-			recalStrAndDir();
+			this.setDirection();
 		}
 	}
 
@@ -58,10 +58,14 @@ public class Force {
 		this.direction = direction;
 	}
 
-	public void recalStrAndDir() {
+	public void setDirection() {
 		if (strength > 0)
 			setDirection(Direction.RIGHT);
 		else if (strength < 0)
 			setDirection(Direction.RIGHT);
+	}
+	
+	public void recalStrAndDir() {
+		setDirection();
 	}
 }
