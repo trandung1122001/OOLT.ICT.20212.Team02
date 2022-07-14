@@ -19,6 +19,9 @@ This project creates a simple interactive simulation for demonstrating Newton’
 chương trình sẽ tính toán các lực, tổng hợp lực, gia tốc, vận tốc hiện tại, vị trí hiện tại sau mỗi 1 giây  
 6. pause: dừng chương trình, continue: tiếp tục, reset: reset: chạy lại chương trình.
 
+## Demo
+We have a video demo for the project in [Youtube](https://www.youtube.com/watch?v=9n3YYARoG6g)
+
 <!--
 | Name | Assignment |
 |---|----------|
