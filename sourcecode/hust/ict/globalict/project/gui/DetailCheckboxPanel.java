@@ -14,6 +14,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
 public class DetailCheckboxPanel extends JPanel {
+	JCheckBox forceCB, sumOfForcesCB, valueOfForcesCB, massCB, speedCB;
 
 	public DetailCheckboxPanel(SimulationController simCtrl, JLabel massLb, SpeedDisplay speedDisplay) {
 		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -32,7 +33,7 @@ public class DetailCheckboxPanel extends JPanel {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		checkbox.setLayout(null);
 
-		JCheckBox forceCB = new JCheckBox("Forces");
+		forceCB = new JCheckBox("Forces");
 		forceCB.setBounds(18, 3, 179, 34);
 		forceCB.setIconTextGap(25);
 		forceCB.setSelected(false);
@@ -41,7 +42,7 @@ public class DetailCheckboxPanel extends JPanel {
 		forceCB.setFocusable(false);
 		checkbox.add(forceCB);
 
-		JCheckBox sumOfForcesCB = new JCheckBox("Sum of Forces");
+		sumOfForcesCB = new JCheckBox("Sum of Forces");
 		sumOfForcesCB.setBounds(18, 37, 179, 34);
 		sumOfForcesCB.setIconTextGap(25);
 		sumOfForcesCB.setHorizontalAlignment(SwingConstants.LEFT);
@@ -49,7 +50,7 @@ public class DetailCheckboxPanel extends JPanel {
 		sumOfForcesCB.setFocusable(false);
 		checkbox.add(sumOfForcesCB);
 
-		JCheckBox valueOfForcesCB = new JCheckBox("Value Of Forces");
+		valueOfForcesCB = new JCheckBox("Value Of Forces");
 		valueOfForcesCB.setBounds(18, 71, 179, 34);
 		valueOfForcesCB.setIconTextGap(25);
 		valueOfForcesCB.setHorizontalAlignment(SwingConstants.LEFT);
@@ -57,14 +58,14 @@ public class DetailCheckboxPanel extends JPanel {
 		valueOfForcesCB.setFocusable(false);
 		checkbox.add(valueOfForcesCB);
 
-		JCheckBox massCB = new JCheckBox("Mass");
+		massCB = new JCheckBox("Mass");
 		massCB.setBounds(18, 105, 179, 34);
 		massCB.setIconTextGap(25);
 		massCB.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		massCB.setFocusable(false);
 		checkbox.add(massCB);
 
-		JCheckBox speedCB = new JCheckBox("Speed & Acceleration");
+		speedCB = new JCheckBox("Speed & Acceleration");
 		speedCB.setBounds(18, 139, 179, 34);
 		speedCB.setIconTextGap(25);
 		speedCB.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -114,12 +115,19 @@ public class DetailCheckboxPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == 1) {
 					simCtrl.addState(SimState.SHOWING_SPEED);
-				}
-				else {
+				} else {
 					simCtrl.removeState(SimState.SHOWING_SPEED);
 				}
 			}
 		});
+	}
+
+	public void reset() {
+		forceCB.setSelected(false);
+		sumOfForcesCB.setSelected(false);
+		valueOfForcesCB.setSelected(false);
+		massCB.setSelected(false);
+		speedCB.setSelected(false);
 	}
 
 }

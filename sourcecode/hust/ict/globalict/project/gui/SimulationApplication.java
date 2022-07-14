@@ -75,7 +75,7 @@ public class SimulationApplication {
 		ObjectSelectedPanel objSelected = new ObjectSelectedPanel(simCtrl, objParamPanel);
 		frame.getContentPane().add(objSelected);
 
-		ObjectPanel objPanel = new ObjectPanel(simCtrl, frame, objSelected, objParamPanel);
+		ObjectPanel objPanel = new ObjectPanel(simCtrl, frame, objSelected, objParamPanel, detailPanel);
 		frame.getContentPane().add(objPanel);
 
 		AppliedForcePanel appliedFPanel = new AppliedForcePanel(simCtrl, aFDisplay);

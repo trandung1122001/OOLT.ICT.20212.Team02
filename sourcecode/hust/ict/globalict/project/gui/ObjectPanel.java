@@ -20,7 +20,7 @@ import javax.swing.JFrame;
 
 public class ObjectPanel extends JPanel {
 
-	public ObjectPanel(SimulationController simCtrl, JFrame frame, ObjectSelectedPanel objSelectedPanel, ObjectParamPanel paramPanel) {
+	public ObjectPanel(SimulationController simCtrl, JFrame frame, ObjectSelectedPanel objSelectedPanel, ObjectParamPanel paramPanel, DetailCheckboxPanel cbPnael) {
 		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		setLayout(null);
 		setBounds(10, 573, 383, 277);
@@ -55,6 +55,7 @@ public class ObjectPanel extends JPanel {
 					paramPanel.setTitle("Mass (kg)", "Sidelength (m)");
 					paramPanel.setContent(simCtrl.getMainObj().getMass(), simCtrl.getObjectSideLength());;
 					simCtrl.updateObjectSelected(Shape.CUBE);
+					cbPnael.reset();
 				} else {
 					objSelectedPanel.setBounds(0, 0, 0, 0);
 				}
@@ -64,6 +65,7 @@ public class ObjectPanel extends JPanel {
 		});
 		Cube.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
+//				cbPnael.reset();
 				paramPanel.setVisible(false);
 				simCtrl.resetSimulation();
 				objSelectedPanel.setIcon(square);
@@ -81,6 +83,7 @@ public class ObjectPanel extends JPanel {
 					paramPanel.setTitle("Mass (kg)", "Radius (m)");
 					paramPanel.setContent(simCtrl.getMainObj().getMass(), simCtrl.getObjectRadius());;
 					simCtrl.updateObjectSelected(Shape.CYLINDER);
+					cbPnael.reset();
 				} else {
 					objSelectedPanel.setBounds(0, 0, 0, 0);
 				}
@@ -90,6 +93,7 @@ public class ObjectPanel extends JPanel {
 		});
 		Cylinder.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
+				
 				paramPanel.setVisible(false);
 				simCtrl.resetSimulation();
 				objSelectedPanel.setIcon(round);
