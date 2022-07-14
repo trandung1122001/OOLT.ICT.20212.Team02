@@ -31,8 +31,8 @@ public class ObjectParamPanel extends JPanel {
 			public void focusLost(FocusEvent e) {
 				try {
 					Double value = Double.parseDouble(pText1.getText());
-					simCtrl.updateObjMass(value);
-					if (simCtrl.getStates().contains(SimState.SHOWING_MASS)) {
+					simCtrl.updateObjectMass(value);
+					if (simCtrl.checkState(SimState.SHOWING_MASS)) {
 						massLb.setText("[" + value + " " + "kg]");
 					}
 				} catch (NumberFormatException ex) {
@@ -59,18 +59,18 @@ public class ObjectParamPanel extends JPanel {
 				if (simCtrl.getMainObj().getShape() == Shape.CUBE) {
 					try {
 						Double value = Double.parseDouble(pText2.getText());
-						simCtrl.updateObjSideLength(value);
+						simCtrl.updateObjectSideLength(value);
 					} catch (NumberFormatException ex) {
-						pText2.setText(simCtrl.getMainObj().getSideLength() + "");
+						pText2.setText(simCtrl.getObjectSideLength() + "");
 					}
 				}
 
 				else if (simCtrl.getMainObj().getShape() == Shape.CYLINDER) {
 					try {
 						Double value = Double.parseDouble(pText2.getText());
-						simCtrl.updateObjRadius(value);
+						simCtrl.updateObjectRadius(value);
 					} catch (NumberFormatException ex) {
-						pText2.setText(simCtrl.getMainObj().getRadius() + "");
+						pText2.setText(simCtrl.getObjectRadius() + "");
 					}
 				}
 			}

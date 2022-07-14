@@ -4,13 +4,10 @@ import javax.swing.JPanel;
 import javax.swing.border.SoftBevelBorder;
 
 import hust.ict.globalict.project.controller.SimulationController;
-import hust.ict.globalict.project.utils.Constants.SimState;
-import hust.ict.globalict.project.utils.Constants;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -22,35 +19,33 @@ import javax.swing.event.ChangeEvent;
 import java.awt.Cursor;
 
 public class AppliedForcePanel extends JPanel {
-	
-
 	public AppliedForcePanel(SimulationController simCtrl, ForceDisplay aFDisplay) {
 		setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		setBounds(824, 670, 290, 180);
 		setLayout(null);
-		
+
 		JLabel lblAppliedForce = new JLabel("Applied Force");
 		lblAppliedForce.setBounds(10, 11, 271, 32);
 		add(lblAppliedForce);
 		lblAppliedForce.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAppliedForce.setFont(new Font("Tahoma", Font.BOLD, 15));
-		
+
 		JPanel forcePanel = new JPanel();
 		forcePanel.setBounds(10, 55, 271, 105);
 		add(forcePanel);
 		forcePanel.setLayout(null);
 		forcePanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		
+
 		JLabel afUnitLB = new JLabel("newtons");
 		afUnitLB.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		afUnitLB.setBounds(147, 11, 60, 20);
 		forcePanel.add(afUnitLB);
-		
+
 		JTextField afTextField = new JTextField();
 
 		JSlider afSlder = new JSlider();
 		afSlder.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		
+
 		afTextField.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent e) {
 				try {
@@ -58,16 +53,15 @@ public class AppliedForcePanel extends JPanel {
 					simCtrl.updateAppliedFStrength(value);
 					afSlder.setValue(value.intValue());
 				} catch (NumberFormatException ex) {
-					afTextField.setText(simCtrl.getAppliedF().getStrength() + "");
+					afTextField.setText(simCtrl.getSumOfForce().getAppliedForce().getStrength() + "");
 				}
-
 			}
 		});
-		
+
 		afSlder.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				simCtrl.updateAppliedFStrength(afSlder.getValue());
-				afTextField.setText(simCtrl.getAppliedF().getStrength() + "");
+				afTextField.setText(simCtrl.getSumOfForce().getAppliedForce().getStrength() + "");
 			}
 		});
 

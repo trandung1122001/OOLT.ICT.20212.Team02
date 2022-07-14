@@ -53,8 +53,8 @@ public class ObjectPanel extends JPanel {
 					objSelectedPanel.setBounds(613, 308, 200, 200);
 					objSelectedPanel.setIcon(square);
 					paramPanel.setTitle("Mass (kg)", "Sidelength (m)");
-					paramPanel.setContent(simCtrl.getMainObj().getMass(), simCtrl.getMainObj().getSideLength());;
-					simCtrl.updateObjShape(Shape.CUBE);
+					paramPanel.setContent(simCtrl.getMainObj().getMass(), simCtrl.getObjectSideLength());;
+					simCtrl.updateObjectSelected(Shape.CUBE);
 				} else {
 					objSelectedPanel.setBounds(0, 0, 0, 0);
 				}
@@ -65,7 +65,7 @@ public class ObjectPanel extends JPanel {
 		Cube.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				paramPanel.setVisible(false);
-				simCtrl.resetSim();
+				simCtrl.resetSimulation();
 				objSelectedPanel.setIcon(square);
 				Point pos = new Point(e.getLocationOnScreen().x - 200, e.getLocationOnScreen().y - 200);
 				objSelectedPanel.setBounds(pos.x, pos.y, 200, 200);
@@ -79,8 +79,8 @@ public class ObjectPanel extends JPanel {
 					objSelectedPanel.setBounds(613, 308, 200, 200);
 					objSelectedPanel.setIcon(round);
 					paramPanel.setTitle("Mass (kg)", "Radius (m)");
-					paramPanel.setContent(simCtrl.getMainObj().getMass(), simCtrl.getMainObj().getRadius());;
-					simCtrl.updateObjShape(Shape.CYLINDER);
+					paramPanel.setContent(simCtrl.getMainObj().getMass(), simCtrl.getObjectRadius());;
+					simCtrl.updateObjectSelected(Shape.CYLINDER);
 				} else {
 					objSelectedPanel.setBounds(0, 0, 0, 0);
 				}
@@ -91,7 +91,7 @@ public class ObjectPanel extends JPanel {
 		Cylinder.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				paramPanel.setVisible(false);
-				simCtrl.resetSim();
+				simCtrl.resetSimulation();
 				objSelectedPanel.setIcon(round);
 				Point pos = new Point(e.getLocationOnScreen().x - 200, e.getLocationOnScreen().y - 200);
 				objSelectedPanel.setBounds(pos.x, pos.y, 200, 200);

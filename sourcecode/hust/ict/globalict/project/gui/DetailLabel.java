@@ -22,7 +22,7 @@ public class DetailLabel extends JLabel implements ActionListener{
 		this.simCtrl = simCtrl;
 		this.fn = fn;
 		setSize(121, 60);
-		Timer timer = new Timer(Constants.DELTA_TIME_MILISECS, (ActionListener) this);
+		Timer timer = new Timer(Constants.DELTA_TIME * 1000, (ActionListener) this);
 		timer.setInitialDelay(1);
 		timer.start();
 	}
@@ -30,15 +30,15 @@ public class DetailLabel extends JLabel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_VALUE)) {
+		if (simCtrl.checkState(SimState.SHOWING_FORCES_VALUE)) {
 			setVisible(true);
 			if (fn == Fname.APPLIEDFORCE) {
-				setText(String.format("AppliedForce = %.2f N", Math.abs(simCtrl.getAppliedF().getStrength())));
+				setText(String.format("AppliedForce = %.2f N", Math.abs(simCtrl.getSumOfForce().getAppliedForce().getStrength())));
 				setHorizontalAlignment(SwingConstants.CENTER);
 				setFont(new Font("Tahoma", Font.BOLD, 12));
 				setBounds(632, 370, 160, 28);
 			} else if (fn == Fname.FRICTION) {
-				setText(String.format("Friction = %.2f N", Math.abs(simCtrl.getFriction().getStrength())));
+				setText(String.format("Friction = %.2f N", Math.abs(simCtrl.getSumOfForce().getFriction().getStrength())));
 				setHorizontalAlignment(SwingConstants.CENTER);
 				setFont(new Font("Tahoma", Font.BOLD, 12));
 				setBounds(614, 469, 195, 28);

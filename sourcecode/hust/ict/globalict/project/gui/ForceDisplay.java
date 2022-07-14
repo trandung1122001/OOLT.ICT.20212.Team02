@@ -1,13 +1,11 @@
 package hust.ict.globalict.project.gui;
 
-import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import hust.ict.globalict.project.controller.SimulationController;
@@ -25,7 +23,7 @@ public class ForceDisplay extends JLabel implements ActionListener {
 		this.simCtrl = simCtrl;
 		this.fn = fn;
 		setSize(121, 60);
-		Timer timer = new Timer(Constants.DELTA_TIME_MILISECS, (ActionListener) this);
+		Timer timer = new Timer(Constants.DELTA_TIME * 1000, (ActionListener) this);
 		timer.setInitialDelay(1);
 		timer.start();
 	}
@@ -39,7 +37,7 @@ public class ForceDisplay extends JLabel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (fn == Fname.SUMOFFORCES) {
-			if (simCtrl.getStates().contains(SimState.SHOWING_SUMOFFORCES_ARROW) 
+			if (simCtrl.checkState(SimState.SHOWING_SUMOFFORCES_ARROW) 
 					&& simCtrl.getSumOfForce().getStrength() != 0) {
 				f = simCtrl.getSumOfForce();
 				fdir = f.getDirection();
@@ -49,10 +47,10 @@ public class ForceDisplay extends JLabel implements ActionListener {
 					display(Constants.YELLOW_RIGHT_ARROW, new Point(715, 273));
 			} else
 				setVisible(false);
-		} else if (simCtrl.getStates().contains(SimState.SHOWING_FORCES_ARROW)) {
+		} else if (simCtrl.checkState(SimState.SHOWING_FORCES_ARROW)) {
 			if (fn == Fname.APPLIEDFORCE) {
-				if (simCtrl.getAppliedF().getStrength() != 0) {
-					f = simCtrl.getAppliedF();
+				if (simCtrl.getSumOfForce().getAppliedForce().getStrength() != 0) {
+					f = simCtrl.getSumOfForce().getAppliedForce();
 					fdir = f.getDirection();
 					if (fdir == Direction.LEFT)
 						display(Constants.BLUE_LEFT_ARROW, new Point(590, 373));
@@ -62,8 +60,8 @@ public class ForceDisplay extends JLabel implements ActionListener {
 					setVisible(false);
 				}
 			} else if (fn == Fname.FRICTION) {
-				if (simCtrl.getFriction().getStrength() != 0) {
-					f = simCtrl.getFriction();
+				if (simCtrl.getSumOfForce().getFriction().getStrength() != 0) {
+					f = simCtrl.getSumOfForce().getFriction();
 					fdir = f.getDirection();
 					if (fdir == Direction.LEFT)
 						display(Constants.RED_LEFT_ARROW, new Point(590, 473));

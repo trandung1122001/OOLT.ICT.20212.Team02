@@ -64,7 +64,7 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 		lb2.setBounds(27, 68, 175, 34);
 		add(lb2);
 
-		Timer timer = new Timer(Constants.DELTA_TIME_MILISECS, (ActionListener) this);
+		Timer timer = new Timer(Constants.DELTA_TIME, (ActionListener) this);
 
 		tf3 = new JTextField();
 		tf3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -85,16 +85,16 @@ public class SpeedDisplay extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (simCtrl.getStates().contains(SimState.SHOWING_SPEED)) {
+		if (simCtrl.checkState(SimState.SHOWING_SPEED)) {
 			setVisible(true);
-			simCtrl.calAcceleration();
-			if (!simCtrl.getStates().contains(SimState.PAUSE)) {
-				simCtrl.reCalVelocityAfter(Constants.DELTA_TIME_MILISECS / 1000);
-				simCtrl.reCalPositionAfter(Constants.DELTA_TIME_MILISECS / 1000);
+//			simCtrl.calAcceleration();
+			
+			if (!simCtrl.checkState(SimState.PAUSE)) {
+				simCtrl.recalSimulation();
 			}
-			tf1.setText(String.format("%.2f", Math.abs(simCtrl.getAcceleration())));
-			tf2.setText(String.format("%.2f", Math.abs(simCtrl.getVelocity())));
-			double p = simCtrl.getPosition();
+			tf1.setText(String.format("%.2f", Math.abs(simCtrl.getMainObj().getAcceleration())));
+			tf2.setText(String.format("%.2f", Math.abs(simCtrl.getMainObj().getVelocity())));
+			double p = simCtrl.getMainObj().getPosition();
 			
 			
 			if (simCtrl.getMainObj().getShape() == Shape.CUBE) {

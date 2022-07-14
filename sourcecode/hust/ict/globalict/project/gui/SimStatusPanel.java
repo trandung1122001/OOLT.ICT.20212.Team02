@@ -1,6 +1,5 @@
 package hust.ict.globalict.project.gui;
 
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,7 +9,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import hust.ict.globalict.project.controller.SimulationController;
-import hust.ict.globalict.project.utils.Constants.SimState;
 
 public class SimStatusPanel extends JPanel implements ActionListener {
 
@@ -32,23 +30,19 @@ public class SimStatusPanel extends JPanel implements ActionListener {
 
 		pauseBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!simCtrl.getStates().contains(SimState.PAUSE)) {
-					simCtrl.getStates().add(SimState.PAUSE);
-				}
+				simCtrl.pauseSimulation();
 			}
 		});
 
 		continueBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (simCtrl.getStates().contains(SimState.PAUSE)) {
-					simCtrl.getStates().remove(SimState.PAUSE);
-				}
+				simCtrl.continueSimulation();
 			}
 		});
 		
 		resetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				simCtrl.resetSim();
+				simCtrl.resetSimulation();
 			}
 		});
 	}

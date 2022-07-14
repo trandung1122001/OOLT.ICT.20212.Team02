@@ -42,7 +42,7 @@ public class SumOfForce extends Force {
 		Force fri = getFriction();
 		if (app != null && fri != null) {
 			this.setStrength(app.getStrength() + fri.getStrength());
-		}
+		} else this.setStrength(0);
 	}
 
 	public Friction getFriction() {

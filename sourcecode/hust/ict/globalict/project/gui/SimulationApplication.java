@@ -3,26 +3,13 @@ package hust.ict.globalict.project.gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.border.SoftBevelBorder;
 
 import hust.ict.globalict.project.controller.SimulationController;
 import hust.ict.globalict.project.utils.Constants.Fname;
-import hust.ict.globalict.project.utils.Constants.SimState;
 
-import javax.swing.border.BevelBorder;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.event.HierarchyListener;
-import java.awt.event.HierarchyEvent;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import java.awt.Color;
 import javax.swing.UIManager;
 
 public class SimulationApplication {
@@ -63,7 +50,7 @@ public class SimulationApplication {
 		massLb.setFont(new Font("Tahoma", Font.BOLD, 12));
 		massLb.setBounds(637, 416, 150, 28);
 		frame.getContentPane().add(massLb);
-		
+
 		DetailLabel afLb = new DetailLabel(simCtrl, Fname.APPLIEDFORCE);
 		frame.getContentPane().add(afLb);
 		DetailLabel fLb = new DetailLabel(simCtrl, Fname.FRICTION);
@@ -78,9 +65,9 @@ public class SimulationApplication {
 		frame.getContentPane().add(sofDisplay);
 		SpeedDisplay speedDisplay = new SpeedDisplay(simCtrl);
 		frame.getContentPane().add(speedDisplay);
-		DetailCheckboxPanel detailPanel = new DetailCheckboxPanel(simCtrl,  massLb, speedDisplay);
+		DetailCheckboxPanel detailPanel = new DetailCheckboxPanel(simCtrl, massLb, speedDisplay);
 		frame.getContentPane().add(detailPanel);
-		
+
 		SimStatusPanel simStatusPanel = new SimStatusPanel(simCtrl);
 		frame.getContentPane().add(simStatusPanel);
 		ObjectParamPanel objParamPanel = new ObjectParamPanel(simCtrl, massLb);
@@ -98,9 +85,6 @@ public class SimulationApplication {
 
 		SurfacePanel surfacePanel = new SurfacePanel();
 		frame.getContentPane().add(surfacePanel);
-		
-		
-	
 
 	}
 }

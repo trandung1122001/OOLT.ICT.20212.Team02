@@ -74,9 +74,9 @@ public class DetailCheckboxPanel extends JPanel {
 		forceCB.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == 1) {
-					simCtrl.getStates().add(SimState.SHOWING_FORCES_ARROW);
+					simCtrl.addState(SimState.SHOWING_FORCES_ARROW);
 				} else {
-					simCtrl.getStates().remove(SimState.SHOWING_FORCES_ARROW);
+					simCtrl.removeState(SimState.SHOWING_FORCES_ARROW);
 				}
 
 			}
@@ -84,28 +84,28 @@ public class DetailCheckboxPanel extends JPanel {
 		sumOfForcesCB.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == 1) {
-					simCtrl.getStates().add(SimState.SHOWING_SUMOFFORCES_ARROW);
+					simCtrl.addState(SimState.SHOWING_SUMOFFORCES_ARROW);
 				} else {
-					simCtrl.getStates().remove(SimState.SHOWING_SUMOFFORCES_ARROW);
+					simCtrl.removeState(SimState.SHOWING_SUMOFFORCES_ARROW);
 				}
 			}
 		});
 		valueOfForcesCB.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == 1)
-					simCtrl.getStates().add(SimState.SHOWING_FORCES_VALUE);
+					simCtrl.addState(SimState.SHOWING_FORCES_VALUE);
 				else
-					simCtrl.getStates().remove(SimState.SHOWING_FORCES_VALUE);
+					simCtrl.removeState(SimState.SHOWING_FORCES_VALUE);
 			}
 		});
 		massCB.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == 1) {
-					simCtrl.getStates().add(SimState.SHOWING_MASS);
+					simCtrl.addState(SimState.SHOWING_MASS);
 					massLb.setVisible(true);
 					massLb.setText("[" + simCtrl.getMainObj().getMass() + " kg]");
 				} else {
-					simCtrl.getStates().remove(SimState.SHOWING_MASS);
+					simCtrl.removeState(SimState.SHOWING_MASS);
 					massLb.setVisible(false);
 				}
 			}
@@ -113,10 +113,10 @@ public class DetailCheckboxPanel extends JPanel {
 		speedCB.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == 1) {
-					simCtrl.getStates().add(SimState.SHOWING_SPEED);
+					simCtrl.removeState(SimState.SHOWING_SPEED);
 				}
 				else {
-					simCtrl.getStates().remove(SimState.SHOWING_SPEED);
+					simCtrl.removeState(SimState.SHOWING_SPEED);
 				}
 					
 			}

@@ -2,7 +2,6 @@ package hust.ict.globalict.project.gui;
 
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -17,8 +16,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import hust.ict.globalict.project.controller.SimulationController;
-import hust.ict.globalict.project.utils.Constants;
-import hust.ict.globalict.project.utils.Constants.SimState;
 
 public class FrictionPanel extends JPanel {
 
