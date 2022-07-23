@@ -22,17 +22,5 @@ chương trình sẽ tính toán các lực, tổng hợp lực, gia tốc, vậ
 ## Demo
 We have a video demo for the project in [Youtube](https://www.youtube.com/watch?v=9n3YYARoG6g)
 
-<!--
-| Name | Assignment |
-|---|----------|
-|  | <ul> <li>  </li>  </ul>|
-|  | <ul> <li>  </li>  </ul>|
-|  | <ul> <li>  </li>  </ul>|
-
-## Presentation
-Google Drive [link](), or Youtube [link]()
-
-## Demo
-Follow this Google Drive [link](), or Youtube [link]() -->
 
 
